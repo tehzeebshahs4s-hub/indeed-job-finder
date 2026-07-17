@@ -10,19 +10,20 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;bac
 .badge,.src{display:inline-block;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;background:#eef1f5;border:1px solid #e2e5ea;padding:.15rem .45rem;border-radius:999px;color:#6b7280;margin-left:.4rem}
 .src{padding:.3rem .6rem}
 .container{max-width:960px;margin:0 auto;padding:2rem 1.5rem}
-.search{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.search{display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}
 .search input{flex:1;min-width:160px;padding:.7rem .9rem;font-size:1rem;border:1px solid #e2e5ea;border-radius:10px}
 button{border:1px solid #2557d6;background:#2557d6;color:#fff;padding:.7rem 1.2rem;border-radius:10px;font-size:1rem;cursor:pointer;font-family:inherit}
 button:hover{background:#1c44a8}
-.updated{color:#6b7280;font-size:.85rem;margin-bottom:1.5rem}
+.count{color:#6b7280;font-size:.9rem;margin-bottom:1.25rem}
+.updated{color:#999;font-size:.78rem;margin-bottom:1.5rem}
 .card{display:block;background:#fff;border:1px solid #e2e5ea;border-radius:10px;padding:1rem 1.25rem;margin-bottom:.75rem;color:inherit;text-decoration:none}
 .card:hover{border-color:#2557d6}
 .title{font-weight:600;font-size:1.05rem}
+.badge-indeed{color:#2557d6}.badge-arbeitnow{color:#1a7f37}.badge-adzuna{color:#9c27b0}.badge-jooble{color:#1a7f37}
 .meta{color:#6b7280;font-size:.9rem;margin:.15rem 0}
 .salary{color:#1a7f37;font-size:.9rem}
 .summary{color:#555;font-size:.88rem;margin-top:.2rem}
 .footer{text-align:center;color:#6b7280;padding:2rem}
-#results{min-height:50vh}
 </style>
 </head><body>
 <nav class="navbar"><a class="brand" href="/">Remote Job Finder</a><span class="src" id="src">via loading…</span></nav>
@@ -31,331 +32,524 @@ button:hover{background:#1c44a8}
     <input id="q" placeholder="Filter by title or company…" oninput="filterJobs()">
     <button onclick="filterJobs()">Filter</button>
   </div>
-  <div class="updated">Last updated: 2026-07-17 12:02 UTC</div>
-  <div id="results"><a class="card" href="https://www.indeed.com/rc/clk?jk=48d4e37895373efa&amp;bb=iWaXU3y60SSUDvAxvbBJ8IJ-h6JJS5iv5cf7wACvGJ0Qta2QCFEAoO_j1SaeaVzL6DO8tsGua-HGTqdGe9URn3jXSeyFRJNhRBGo9atrsGI8FTO42hm55WiFohmha6XIS1W3JCiI46EC-pIfSSzilj4iMXP1DqrHH9csqWcvliYKogDzOeT5ggoGulE_BVOaNhRUGsBe--M%3D&amp;xkcb=SoA567M3h32ow9gNXj0LbzkdCdPP&amp;fccid=3ed0572c448b2368&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Developer -AWS Python SQL Big Data <span class="badge">indeed</span></div>
-  <div class="meta">Intone Networks · Remote</div>
+  <div class="count" id="count"></div>
+  <div class="updated">Last updated: 2026-07-17 12:08 UTC</div>
+  <div id="results"><a class="card" href="https://www.arbeitnow.com/jobs/companies/efly-marketplace-services-gmbh/senior-google-performance-analytics-manager-stuttgart-92499" target="_blank" rel="noopener">
+  <div class="title">Senior Google Performance &amp; Analytics Manager (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">eFLY Marketplace Services GmbH · Stuttgart</div>
+  <div class="summary">Marketing and Communication…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/efly-marketplace-services-gmbh/pflichtpraktikum-online-marketing-manager-stuttgart-240723" target="_blank" rel="noopener">
+  <div class="title">Pflichtpraktikum Online Marketing Manager (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">eFLY Marketplace Services GmbH · Stuttgart</div>
+  <div class="salary">Internship</div><div class="summary">Marketing and Communication…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/efly-marketplace-services-gmbh/pflichtpraktikum-im-bereich-grafikdesign-stuttgart-52001" target="_blank" rel="noopener">
+  <div class="title">Pflichtpraktikum im Bereich Grafikdesign (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">eFLY Marketplace Services GmbH · Stuttgart</div>
+  <div class="summary">Marketing and Communication…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/efly-marketplace-services-gmbh/online-marketing-manager-stuttgart-380688" target="_blank" rel="noopener">
+  <div class="title">Online Marketing Manager (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">eFLY Marketplace Services GmbH · Stuttgart</div>
+  <div class="summary">Marketing Manager…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/efly-marketplace-services-gmbh/junior-google-performance-analytics-manager-stuttgart-125959" target="_blank" rel="noopener">
+  <div class="title">Junior Google Performance &amp; Analytics Manager (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">eFLY Marketplace Services GmbH · Stuttgart</div>
+  <div class="summary">Marketing and Communication…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/efly-marketplace-services-gmbh/tiktok-social-commerce-lead-stuttgart-124805" target="_blank" rel="noopener">
+  <div class="title">TikTok &amp; Social Commerce Lead (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">eFLY Marketplace Services GmbH · Stuttgart</div>
+  <div class="summary">Marketing and Communication…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/jurgen-tausch-recruitment-und-coaching/projektmanagerin-anlagenbau-dresden-411017" target="_blank" rel="noopener">
+  <div class="title">Projektmanager:in - Anlagenbau <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">JÜRGEN TAUSCH Recruitment und Coaching · Dresden</div>
+  <div class="salary">teamleitung</div><div class="summary">Project Management…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/yanmar-energy-system-europe-gmbh/it-systemadministrator-local-it-administrator-marl-231393" target="_blank" rel="noopener">
+  <div class="title">IT-Systemadministrator / Local IT Administrator (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Yanmar Energy System Europe GmbH · Marl</div>
+  <div class="salary">berufserfahren</div><div class="summary">System and Network Administration…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/nature-compound-gmbh/entwicklungsingenieur-nachhaltige-kunststoffe-verfahrenstechnik-schwerte-148057" target="_blank" rel="noopener">
+  <div class="title">Entwicklungsingenieur (m/w/d) Nachhaltige Kunststoffe &amp; Verfahrenstechnik <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Nature Compound GmbH · Schwerte</div>
+  <div class="summary">Process Engineering…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/steman-gmbh/bilanzbuchhalter-wiesbaden-346978" target="_blank" rel="noopener">
+  <div class="title">Bilanzbuchhalter (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">SteMan GmbH · Wiesbaden</div>
+  <div class="summary">Finance…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/qunomedical/engineering-lead-part-time-berlin-243330" target="_blank" rel="noopener">
+  <div class="title">Engineering Lead (Part-time) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Qunomedical · Berlin</div>
+  <div class="salary">professional / experienced</div><div class="summary">Remote, Automation Engineering…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/secupay-ag/werkstudent-projektmanagement-pulsnitz-483868" target="_blank" rel="noopener">
+  <div class="title">Werkstudent Projektmanagement (W/M/D) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">secupay AG · Pulsnitz</div>
+  <div class="salary">Working student, hilfstätigkeit / student</div><div class="summary">Process Management…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/rain-for-rent-international/business-development-manager-suddeutschland-bochum-361394" target="_blank" rel="noopener">
+  <div class="title">Business Development Manager ( m/w/d)- Süddeutschland <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Rain for Rent International · Bochum</div>
+  <div class="salary">teamleitung</div><div class="summary">Remote, Business Development…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/prime-hr-agentur/bilanzbuchhalter-bremen-280596" target="_blank" rel="noopener">
+  <div class="title">Bilanzbuchhalter (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">PRIME HR Agentur® · Bremen</div>
+  <div class="summary">Finance…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/lock4safe-marketing/mediengestalterin-digital-print-kleve-107863" target="_blank" rel="noopener">
+  <div class="title">Mediengestalter:in Digital &amp; Print (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Lock4Safe Marketing · Kleve</div>
+  <div class="salary">berufserfahren</div><div class="summary">Marketing Assistant…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/prime-hr-agentur/senior-accountant-bilanzbuchhalter-augsburg-227510" target="_blank" rel="noopener">
+  <div class="title">Senior Accountant / Bilanzbuchhalter (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">PRIME HR Agentur® · Augsburg</div>
+  <div class="summary">Finance…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/steamulation-jobs/wirtschaftsinformatiker-it-projektmanager-vollzeit-mwd-lohr-am-main-147750" target="_blank" rel="noopener">
+  <div class="title">Wirtschaftsinformatiker / It-Projektmanager  - Vollzeit [M|W|D] <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Steamulation Jobs · Lohr am Main</div>
+  <div class="salary">Full-time permanent, mid</div><div class="summary">Internet and software, vocational…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/r-raymon-bicycles-gmbh/werkstudent-informatik-wirtschaftsinformatik-schweinfurt-89115" target="_blank" rel="noopener">
+  <div class="title">Werkstudent (m/w/d) Informatik / Wirtschaftsinformatik <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">R Raymon Bicycles GmbH · Schweinfurt</div>
+  <div class="salary">Working student</div><div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/visioniq-marketing-communication-gmbh/senior-marketing-manager-berlin-mitte-59057" target="_blank" rel="noopener">
+  <div class="title">Senior Marketing Manager (m/w/d) - Berlin-Mitte <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">VisionIQ marketing &amp; communication GmbH · Berlin</div>
+  <div class="salary">berufserfahren</div><div class="summary">Marketing Manager…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/birmoser-werbetechnik-gmbh/projektkoordinatorin-werbetechnik-kundenberatung-auftragsabwicklung-tuntenhausen-223214" target="_blank" rel="noopener">
+  <div class="title">Projektkoordinator:in Werbetechnik |Kundenberatung Auftragsabwicklung <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Birmoser Werbetechnik GmbH · Tuntenhausen</div>
+  <div class="salary">teamleitung</div><div class="summary">Project Management…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/helpling-gmbh-co-kg/internship-in-operations-all-genders-berlin-436873" target="_blank" rel="noopener">
+  <div class="title">Internship in Operations (all genders) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Helpling GmbH &amp; Co. KG · Berlin</div>
+  <div class="salary">Internship, entry</div><div class="summary">Customer Service…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/digitalagenten/pflichtpraktikant-business-development-hr-office-management-berlin-262856" target="_blank" rel="noopener">
+  <div class="title">Pflichtpraktikant Business Development, HR &amp; Office Management (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Digitalagenten · Berlin</div>
+  <div class="salary">Internship</div><div class="summary">Marketing and Communication…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/pertemps-erp/sap-wm-ewm-consultant-cologne-351922" target="_blank" rel="noopener">
+  <div class="title">SAP WM/EWM Consultant <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Pertemps ERP · Cologne</div>
+  <div class="salary">professional / experienced</div><div class="summary">Business Consulting…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/vermeiren-deutschland-gmbh/marketingkoordinator-dach-willich-237055" target="_blank" rel="noopener">
+  <div class="title">Marketingkoordinator DACH <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Vermeiren Deutschland GmbH · Willich</div>
+  <div class="salary">berufserfahren</div><div class="summary">Marketing Manager…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/pertemps-erp/sap-sd-consultant-mannheim-397703" target="_blank" rel="noopener">
+  <div class="title">SAP SD Consultant <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Pertemps ERP · Mannheim</div>
+  <div class="salary">berufserfahren</div><div class="summary">Business Consulting…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/miralot/werkstudentin-film-festival-operations-remote-berlin-457853" target="_blank" rel="noopener">
+  <div class="title">Werkstudent:in Film &amp; Festival Operations (Remote) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Miralot · Berlin</div>
+  <div class="salary">Working student, hilfstätigkeit / student</div><div class="summary">Remote, Business Operations…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/chili-and-change-gmbh/change-oe-consultant-fuhrung-digitale-transformation-frankfurt-am-main-311190" target="_blank" rel="noopener">
+  <div class="title">Change &amp; OE Consultant: Führung &amp; digitale Transformation (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Chili and Change GmbH · Frankfurt am Main</div>
+  <div class="summary">Business Consulting…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/datasmart-point-gmbh/ki-manager-ihk-weiterbildung-100-remote-berlin-138908" target="_blank" rel="noopener">
+  <div class="title">KI-Manager (IHK) Weiterbildung | 100 % Remote <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">DataSmart Point GmbH · Berlin</div>
+  <div class="summary">Remote, IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/exmox-gmbh/senior-crm-manager-hamburg-108782" target="_blank" rel="noopener">
+  <div class="title">Senior CRM Manager (f/m/x) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">exmox GmbH · Hamburg</div>
+  <div class="salary">professional / experienced</div><div class="summary">Remote, Marketing and Communication…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/think-about-it-gmbh/service-desk-spezialist-onsite-in-koln-cologne-37436" target="_blank" rel="noopener">
+  <div class="title">Service Desk Spezialist - Onsite in Köln (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">think about IT GmbH · Cologne</div>
+  <div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/prettytelco-gmbh/product-owner-app-manager-reken-66367" target="_blank" rel="noopener">
+  <div class="title">Product Owner / App Manager m/w/d <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">prettyTELCO GmbH · Reken</div>
+  <div class="summary">Project Management…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/sl-connect-gmbh/recruiter-grossenhain-18501" target="_blank" rel="noopener">
+  <div class="title">Recruiter (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">S&amp;L Connect GmbH · Grossenhain</div>
+  <div class="salary">berufserfahren</div><div class="summary">Recruitment and Selection…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/prettytelco-gmbh/technical-account-manager-b2b-mcptt-mobilfunk-cologne-10367" target="_blank" rel="noopener">
+  <div class="title">Technical Account Manager B2B MCPTT / Mobilfunk (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">prettyTELCO GmbH · Cologne</div>
+  <div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/prettytelco-gmbh/technical-account-manager-b2b-m2m-mobilfunk-cologne-481605" target="_blank" rel="noopener">
+  <div class="title">Technical Account Manager B2B  M2M-Mobilfunk (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">prettyTELCO GmbH · Cologne</div>
+  <div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/prettytelco-gmbh/seniorservice-manager-mobilfunk-b2b-key-account-energiewirtschaft-cologne-55460" target="_blank" rel="noopener">
+  <div class="title">(Senior)Service Manager Mobilfunk B2B Key-Account Energiewirtschaft <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">prettyTELCO GmbH · Cologne</div>
+  <div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/prettytelco-gmbh/senior-it-administrator-in-der-workplace-verwaltung-ehingen-206068" target="_blank" rel="noopener">
+  <div class="title">Senior IT-Administrator (m/w/d) in der Workplace-Verwaltung <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">prettyTELCO GmbH · Ehingen</div>
+  <div class="summary">System and Network Administration…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/tenmedia-gmbh/traumpraktikum-mit-perspektive-werde-fachinformatiker-fur-anwendungsentwicklung-bei-uns-in-berlin-335643" target="_blank" rel="noopener">
+  <div class="title">Traumpraktikum mit Perspektive: Werde Fachinformatiker für Anwendungsentwicklung (m/w/d) bei uns in Berlin! <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">TenMedia GmbH · Berlin</div>
+  <div class="salary">Internship</div><div class="summary">Software Development…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/ft-fitness-technology-gmbh/werkstudent-e-mail-marketing-crm-manager-munich-12036" target="_blank" rel="noopener">
+  <div class="title">Werkstudent E-Mail Marketing / CRM Manager (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">FT Fitness Technology GmbH · Munich</div>
+  <div class="salary">Working student, hilfstätigkeit / student</div><div class="summary">CRM, Direct Marketing…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/cadaico-gmbh/ai-engineer-llm-rag-agentic-systems-stuttgart-126679" target="_blank" rel="noopener">
+  <div class="title">AI Engineer (m/w/d) - LLM, RAG, Agentic Systems <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Cadaico GmbH · Stuttgart</div>
+  <div class="salary">berufserfahren</div><div class="summary">Engineering…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/stannol/bilanzbuchhalterin-senior-finanzbuchhalterin-velbert-456733" target="_blank" rel="noopener">
+  <div class="title">Bilanzbuchhalter*in / Senior Finanzbuchhalter*in (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">STANNOL · Velbert</div>
+  <div class="salary">berufserfahren</div><div class="summary">Finance…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/interlead-gmbh/product-owner-berlin-287693" target="_blank" rel="noopener">
+  <div class="title">Product Owner (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Interlead GmbH · Berlin</div>
+  <div class="salary">berufserfahren</div><div class="summary">Remote, Software Development…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/exmox-gmbh/principal-machine-learning-engineer-hamburg-429549" target="_blank" rel="noopener">
+  <div class="title">Principal Machine Learning Engineer (f/m/x) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">exmox GmbH · Hamburg</div>
+  <div class="salary">professional / experienced</div><div class="summary">Software Development…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/eupd-research-sustainable-management-gmbh/werkstudent-marketing-communications-bonn-239767" target="_blank" rel="noopener">
+  <div class="title">Werkstudent Marketing &amp; Communications (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">EUPD Research Sustainable Management GmbH · Bonn</div>
+  <div class="salary">Working student, hilfstätigkeit / student</div><div class="summary">Marketing and Communication…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/bundesverbraucherhilfe-ev/pressesprecher-im-ehrenamt-homeoffice-berlin-418766" target="_blank" rel="noopener">
+  <div class="title">Pressesprecher (m/w/d) im Ehrenamt (Homeoffice) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Bundesverbraucherhilfe e.V. · Berlin</div>
+  <div class="salary">Side, berufserfahren</div><div class="summary">Remote, Public Relations, Corporate Communication…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/chili-and-change-gmbh/leadership-trainerin-fuhrung-digitale-transformation-frankfurt-am-main-701" target="_blank" rel="noopener">
+  <div class="title">Leadership Trainer:in: Führung &amp; digitale Transformation (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Chili and Change GmbH · Frankfurt am Main</div>
+  <div class="summary">Business Consulting…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/think-about-it-gmbh/it-systemelektroniker-bochum-307468" target="_blank" rel="noopener">
+  <div class="title">IT-Systemelektroniker (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">think about IT GmbH · Bochum</div>
+  <div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/think-about-it-gmbh/it-system-engineer-bochum-249725" target="_blank" rel="noopener">
+  <div class="title">IT-System Engineer (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">think about IT GmbH · Bochum</div>
+  <div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/think-about-it-gmbh/senior-it-administrator-bochum-287050" target="_blank" rel="noopener">
+  <div class="title">Senior IT Administrator (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">think about IT GmbH · Bochum</div>
+  <div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/oatsome-gmbh/finance-controlling-manager-frankfurt-am-main-342322" target="_blank" rel="noopener">
+  <div class="title">Finance &amp; Controlling Manager (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Oatsome GmbH · Frankfurt am Main</div>
+  <div class="salary">berufserfahren</div><div class="summary">Controlling…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/think-about-it-gmbh/team-lead-accounting-bochum-409158" target="_blank" rel="noopener">
+  <div class="title">Team Lead Accounting (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">think about IT GmbH · Bochum</div>
+  <div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/think-about-it-gmbh/senior-microsoft-cloud-transformation-architect-nuremberg-195639" target="_blank" rel="noopener">
+  <div class="title">Senior Microsoft Cloud Transformation Architect (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">think about IT GmbH · Nuremberg</div>
+  <div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/think-about-it-gmbh/senior-microsoft-ai-copilot-engineer-nuremberg-244482" target="_blank" rel="noopener">
+  <div class="title">Senior Microsoft AI &amp; Copilot Engineer (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">think about IT GmbH · Nuremberg</div>
+  <div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/think-about-it-gmbh/senior-azure-cloud-platform-architect-nuremberg-340896" target="_blank" rel="noopener">
+  <div class="title">Senior Azure Cloud Platform Architect (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">think about IT GmbH · Nuremberg</div>
+  <div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/k-tronik-gmbh/software-test-engineer-sichere-kommunikation-stuttgart-208650" target="_blank" rel="noopener">
+  <div class="title">Software Test Engineer (m/w/x) - Sichere Kommunikation <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">K-tronik GmbH · Stuttgart</div>
+  <div class="salary">berufserfahren</div><div class="summary">Software Development…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/k-tronik-gmbh/security-architect-specialist-stuttgart-271167" target="_blank" rel="noopener">
+  <div class="title">Security Architect/Specialist (m/w/x) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">K-tronik GmbH · Stuttgart</div>
+  <div class="salary">berufserfahren</div><div class="summary">IT Security…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/digitale-leute-school/teaching-assistant-vibe-coding-cologne-140768" target="_blank" rel="noopener">
+  <div class="title">Teaching Assistant Vibe Coding <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Digitale Leute School · Cologne</div>
+  <div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/treureal-gebaudeservice-gmbh/teamleiter-facility-management-gebaudeservice-leipzig-53654" target="_blank" rel="noopener">
+  <div class="title">Teamleiter Facility Management / Gebäudeservice (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">TREUREAL Gebäudeservice GmbH · Leipzig</div>
+  <div class="salary">Full-time permanent, experienced</div><div class="summary">Property, vocational…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/pulse-advertising-gmbh/social-media-strategy-manager-berlin-113855" target="_blank" rel="noopener">
+  <div class="title">Social Media Strategy Manager <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Pulse Advertising GmbH · Berlin</div>
+  <div class="summary">Strategic Marketing…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/thilman-finanz/datenerfassungsmitarbeiter-burgbernheim-59279" target="_blank" rel="noopener">
+  <div class="title">Datenerfassungsmitarbeiter <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Thilman Finanz · Burgbernheim</div>
+  <div class="salary">Side</div><div class="summary">Private Banking…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/sumup/ios-engineer-mobile-platform-cologne-93296" target="_blank" rel="noopener">
+  <div class="title">iOS Engineer - Mobile Platform <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">SumUp · Cologne, North Rhine-Westphalia, Germany</div>
   
 </a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=cdd02ac49f924b97&amp;bb=iWaXU3y60SSUDvAxvbBJ8Llm6azIX0AxvvFh-vBqnuJM01Fl4THZy4IoIPM_JaHe3vo-_2gBJdhX02VAHGxSsHOfWTyqsib88h7hE7qSog30YYZcgR_y0PYpY2_VPSOA2zl1HIn6aPlofFfV2MHwAnWtCqfna_ZQzi05wk4De2ulGUFfzVXwcyA661bAVzCjazGG2igd-Yc%3D&amp;xkcb=SoCN67M3h32ow9gNXj0KbzkdCdPP&amp;fccid=dd616958bd9ddc12&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Python Developer <span class="badge">indeed</span></div>
-  <div class="meta">Robotics Technologies · Remote in Asheville, NC</div>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/taxtalentede/steuerberater-in-wernigerode-auf-wunsch-mit-partnerperspektive-gesucht-mindestens-90000eur-347291" target="_blank" rel="noopener">
+  <div class="title">Steuerberater (m/w/d) in Wernigerode, auf Wunsch mit Partnerperspektive, gesucht - mindestens 90.000€ <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Taxtalente.de · Wernigerode</div>
+  <div class="summary">Directors, Chief Executives…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/taxtalentede/steuerberater-in-hassmersheim-auf-wunsch-mit-partnerperspektive-gesucht-mindestens-90000eur-34254" target="_blank" rel="noopener">
+  <div class="title">Steuerberater (m/w/d) in Haßmersheim, auf Wunsch mit Partnerperspektive, gesucht - mindestens 90.000€ <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Taxtalente.de · Haßmersheim</div>
+  <div class="summary">Directors, Chief Executives…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/taxtalentede/steuerberater-in-wolken-auf-wunsch-mit-partnerperspektive-gesucht-mindestens-90000eur-332369" target="_blank" rel="noopener">
+  <div class="title">Steuerberater (m/w/d) in Wolken, auf Wunsch mit Partnerperspektive, gesucht - mindestens 90.000€ <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Taxtalente.de · Wolken</div>
+  <div class="summary">Directors, Chief Executives…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/taxtalentede/steuerberater-in-wittenberge-auf-wunsch-mit-partnerperspektive-gesucht-mindestens-90000eur-412777" target="_blank" rel="noopener">
+  <div class="title">Steuerberater (m/w/d) in Wittenberge, auf Wunsch mit Partnerperspektive, gesucht - mindestens 90.000€ <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Taxtalente.de · Wittenberge</div>
+  <div class="summary">Directors, Chief Executives…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/taxtalentede/steuerberater-in-blaustein-auf-wunsch-mit-partnerperspektive-gesucht-mindestens-90000eur-374961" target="_blank" rel="noopener">
+  <div class="title">Steuerberater (m/w/d) in Blaustein, auf Wunsch mit Partnerperspektive, gesucht - mindestens 90.000€ <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Taxtalente.de · Blaustein</div>
+  <div class="summary">Directors, Chief Executives…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/taxtalentede/steuerberater-in-weil-der-stadt-auf-wunsch-mit-partnerperspektive-gesucht-mindestens-90000eur-448791" target="_blank" rel="noopener">
+  <div class="title">Steuerberater (m/w/d) in Weil der Stadt, auf Wunsch mit Partnerperspektive, gesucht - mindestens 90.000€ <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Taxtalente.de · Weil der Stadt</div>
+  <div class="summary">Directors, Chief Executives…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/taxtalentede/steuerberater-in-grossraschen-auf-wunsch-mit-partnerperspektive-gesucht-mindestens-90000eur-314720" target="_blank" rel="noopener">
+  <div class="title">Steuerberater (m/w/d) in Großräschen, auf Wunsch mit Partnerperspektive, gesucht - mindestens 90.000€ <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Taxtalente.de · Großräschen</div>
+  <div class="summary">Directors, Chief Executives…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/taxtalentede/steuerberater-in-aach-auf-wunsch-mit-partnerperspektive-gesucht-mindestens-90000eur-192764" target="_blank" rel="noopener">
+  <div class="title">Steuerberater (m/w/d) in Aach, auf Wunsch mit Partnerperspektive, gesucht - mindestens 90.000€ <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Taxtalente.de · Aach</div>
+  <div class="summary">Directors, Chief Executives…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/immo-pictures/operations-client-manager-mit-perspektive-auf-teamleitung-cologne-175326" target="_blank" rel="noopener">
+  <div class="title">Operations &amp; Client Manager (m/w/d) - mit Perspektive auf Teamleitung <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">IMMO PICTURES · Cologne</div>
+  <div class="summary">CRM, Direct Marketing…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/rockstardevelopers-gmbh/machine-learning-engineer-stuttgart-412768" target="_blank" rel="noopener">
+  <div class="title">Machine Learning Engineer (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Rockstardevelopers GmbH · Stuttgart</div>
+  <div class="summary">Remote, Software Development…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/lyn-the-agency-gmbh/accountant-in-vollzeit-dusseldorf-185583" target="_blank" rel="noopener">
+  <div class="title">Accountant (m/w/d) in Vollzeit <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Lyn the Agency GmbH · Düsseldorf</div>
+  <div class="salary">berufserfahren</div><div class="summary">Finance…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/nexia-gbr/promoter-handelspartner-100-remote-stuttgart-259558" target="_blank" rel="noopener">
+  <div class="title">Promoter &amp; Handelspartner (m/w/d) / 100 % Remote <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Nexia GbR · Stuttgart</div>
+  <div class="salary">Freelance</div><div class="summary">Remote, Distribution Marketing…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/gibbon-id-sports-gmbh/performance-marketing-manager-emea-stuttgart-63370" target="_blank" rel="noopener">
+  <div class="title">Performance Marketing Manager, EMEA <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">GIBBON - ID Sports GmbH · Stuttgart</div>
+  <div class="salary">teamleitung</div><div class="summary">Distribution Marketing…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/hospichef/technischer-projektmanager-software-integrationen-munich-172806" target="_blank" rel="noopener">
+  <div class="title">Technischer Projektmanager Software-Integrationen (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">HospiChef · Munich</div>
+  <div class="summary">Software Development…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/flora-food-group/senior-key-account-manager-hamburg-252099" target="_blank" rel="noopener">
+  <div class="title">(Senior) Key Account Manager (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Flora Food Group · Hamburg, Germany</div>
   
 </a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=67fdeec7c94491a1&amp;bb=iWaXU3y60SSUDvAxvbBJ8MKE7HO6ZRrHqbB8JmrVfXOdM8OzkMzv4yNTHM3hATTTXrlWbPzsbiHb93xBnlnakUT26a26t3Qq0LYniLWYdfv1v7GG7P0WfxoEWVy7ctn71QPalk2H4bqmdPf-ZcHH58ogQXIRCZNXo23B4OldPPmfM8ilwNv-stRKo24mxetd0ovQDUYcYCw%3D&amp;xkcb=SoAQ67M3h32ow9gNXj0JbzkdCdPP&amp;fccid=2ecf4575019bf07a&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Python Developer <span class="badge">indeed</span></div>
-  <div class="meta">CEDENT · Remote</div>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/wellhub/enterprise-account-executive-munich-197606" target="_blank" rel="noopener">
+  <div class="title">Enterprise Account Executive (m/f/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Wellhub · Munich, Bavaria, Germany</div>
   
 </a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=8944d68e23ae8442&amp;bb=iWaXU3y60SSUDvAxvbBJ8KDQKhKttQTijMP55q3HykjlD1eODnMn1fBrnGAEhC98_MQxWzEogZuBgBwuhd7ACC5etgIX5Bac8uErSpq3HMxcNastg6VTRENkUhejHvfElQ6b8ZHE8VkFcxrAmmJE5Sv-hIm5wnF9hKgbveF7-cDEbYpfGYPe5KgItNRSgqiUyWE5D5RyVXs%3D&amp;xkcb=SoCk67M3h32ow9gNXj0IbzkdCdPP&amp;fccid=2ecf4575019bf07a&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Python Developer <span class="badge">indeed</span></div>
-  <div class="meta">CEDENT · Remote</div>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/catapult-sports/senior-software-engineer-cologne-205456" target="_blank" rel="noopener">
+  <div class="title">Senior Software Engineer <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Catapult Sports · Cologne, North Rhine-Westphalia, Germany</div>
   
 </a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=173ef8abe0493c5a&amp;bb=iWaXU3y60SSUDvAxvbBJ8NVmpbMymr_gcU6ocyyWWhVtOCjtNB9dHtH847TDeiJP_9TgLofSv6FXA7iPM1cC51Vtq59So87kST2SYLjYoQ3L4NlcXhWl__pDsVb8EFm1NO5gPwRhEx5XVY9b5S-P1Lg3XnxUvLAoSJhqKkGbJumH5VAr_AkOpMcsMPMbPSRO0xnOtx_GASM%3D&amp;xkcb=SoAq67M3h32ow9gNXj0PbzkdCdPP&amp;fccid=5a7d0d1dd0150c0b&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Junior Developer - Python &amp; Go <span class="badge">indeed</span></div>
-  <div class="meta">Buyers Edge Platform, LLC · Remote in Waltham, MA</div>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/zeeg/praktikantin-social-media-video-editing-content-strategie-berlin-377255" target="_blank" rel="noopener">
+  <div class="title">Praktikantin (m/w/d) Social Media, Video Editing &amp; Content Strategie <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Zeeg · Berlin</div>
+  <div class="salary">hilfstätigkeit / student</div><div class="summary">Social Media Manager…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/hospichef/software-engineer-full-stack-munich-319540" target="_blank" rel="noopener">
+  <div class="title">Software Engineer (Full-Stack) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">HospiChef · Munich</div>
+  <div class="summary">Software Development…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/gfn-gmbh/senior-software-engineer-ml-engineer-im-bildungsumfeld-remote-heidelberg-276710" target="_blank" rel="noopener">
+  <div class="title">Senior Software Engineer / ML Engineer (m/w/x) im Bildungsumfeld / Remote <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">GFN GmbH · Heidelberg</div>
+  <div class="summary">Remote, Software Development…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/smantry/online-kundendienst-customer-service-der-smantry-app-full-remote-minijob-giengen-421570" target="_blank" rel="noopener">
+  <div class="title">Online Kundendienst (Customer Service) der Smantry App, Full Remote, Minijob <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Smantry · Giengen</div>
+  <div class="summary">Remote, Marketing and Communication…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/franziska-gareis-dein-finanzmangement/vertriebsassistenz-kundenbetreuung-weiden-in-der-oberpfalz-307189" target="_blank" rel="noopener">
+  <div class="title">Vertriebsassistenz / Kundenbetreuung (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Franziska Gareis - Dein Finanzmangement · Weiden in der Oberpfalz</div>
+  <div class="salary">Side</div><div class="summary">Private Banking…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/alphapet-ventures-gmbh/werksstudent-brand-management-herrmanns-manufaktur-munich-138478" target="_blank" rel="noopener">
+  <div class="title">Werksstudent (m/w/d) Brand Management – Herrmann´s Manufaktur <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Alphapet Ventures GmbH · Munich</div>
+  <div class="salary">Internship, berufseinstieg</div><div class="summary">Marketing and Communication…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/mendato-gmbh/content-producer-videoschnitt-berlin-186331" target="_blank" rel="noopener">
+  <div class="title">Content Producer / Videoschnitt (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Mendato GmbH · Berlin</div>
+  <div class="summary">Marketing Manager…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/genoray-eu-gmbh/medical-equipment-and-device-service-technician-engineer-berlin-germany-332066" target="_blank" rel="noopener">
+  <div class="title">Medical Equipment and Device Service Technician/Engineer (m/f/x) - Berlin, Germany <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Genoray EU GmbH · Berlin</div>
+  <div class="salary">entry</div><div class="summary">Software Development…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/herbold-fischer-associates-gmbh/senior-research-consultant-frankfurt-am-main-348792" target="_blank" rel="noopener">
+  <div class="title">(Senior) Research Consultant <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Herbold Fischer Associates GmbH · Frankfurt am Main</div>
+  <div class="summary">Recruitment and Selection…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/lwb-group/bezahltes-pflichtpraktikum-customer-support-im-tierversicherung-startup-100-homeoffice-berlin-213322" target="_blank" rel="noopener">
+  <div class="title">Bezahltes Pflichtpraktikum Customer Support (m/w/d) im Tierversicherung-Startup | 100% Homeoffice <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">LWB Group · Berlin</div>
+  <div class="salary">Internship</div><div class="summary">Remote, Distribution Marketing…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/quantum-systems-gmbh/hil-test-engineer-gilching-483772" target="_blank" rel="noopener">
+  <div class="title">HIL Test Engineer (m/f/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Quantum-Systems GmbH · Gilching</div>
+  <div class="salary">Full-time permanent, mid</div><div class="summary">Internet and software, professional…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/quantum-systems-gmbh/test-automation-engineer-gilching-45300" target="_blank" rel="noopener">
+  <div class="title">Test Automation Engineer (m/f/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Quantum-Systems GmbH · Gilching</div>
+  <div class="salary">Full-time permanent, mid</div><div class="summary">Internet and software, professional…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/sandan-ai/werkstudent-kommunikation-pr-storytelling-berlin-157233" target="_blank" rel="noopener">
+  <div class="title">Werkstudent Kommunikation &amp; PR - Storytelling (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">sandan AI · Berlin</div>
+  <div class="salary">Working student</div><div class="summary">Remote, Public Relations, Corporate Communication…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/1komma50/internship-product-management-energy-products-tariffs-berlin-332985" target="_blank" rel="noopener">
+  <div class="title">Internship Product Management Energy Products &amp; Tariffs (m/f/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">1KOMMA5˚ · Berlin</div>
+  <div class="salary">Internship, no experience required / student</div><div class="summary">Remote, Software Development…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/1komma50/senior-product-manager-procurement-portfolio-management-berlin-393507" target="_blank" rel="noopener">
+  <div class="title">(Senior) Product Manager - Procurement &amp; Portfolio Management (m/f/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">1KOMMA5˚ · Berlin</div>
+  <div class="salary">professional / experienced</div><div class="summary">Remote, Software Development…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/tpnet-marktforschung/nebenjob-ki-sprachassistent-mit-deiner-stimme-testen-remote-leipzig-322701" target="_blank" rel="noopener">
+  <div class="title">Nebenjob: KI-Sprachassistent mit deiner Stimme testen (m/w/d) - remote <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">TPnet Marktforschung · Leipzig</div>
+  <div class="salary">Side</div><div class="summary">Remote, Marketing and Communication…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/pgxperts-gmbh/senior-it-operations-specialist-furth-393455" target="_blank" rel="noopener">
+  <div class="title">Senior IT &amp; Operations Specialist (m/w/d) <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">PGXperts GmbH · Fürth</div>
+  <div class="salary">berufserfahren</div><div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/hubside-die-recruitingwerkstatt/it-support-spezialist-windows-und-linux-munich-459493" target="_blank" rel="noopener">
+  <div class="title">IT-Support Spezialist (m/w/d) Windows und Linux <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">hubside - Die Recruitingwerkstatt · Munich</div>
+  <div class="summary">IT…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/jakala-germany-gmbh/recruiting-specialist-all-genders-befristet-auf-14-monate-hamburg-173083" target="_blank" rel="noopener">
+  <div class="title">Recruiting Specialist (all genders) - befristet auf 14 Monate <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">JAKALA Germany GmbH · Hamburg</div>
+  <div class="salary">berufserfahren</div><div class="summary">Recruitment and Selection…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/nayoki-performance-gmbh/senior-performance-manager-sea-in-munchen-oder-remote-deutschlandweit-munich-377012" target="_blank" rel="noopener">
+  <div class="title">(Senior) Performance Manager SEA (m/w/d) in München oder remote deutschlandweit <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Nayoki Performance GmbH · Munich</div>
+  <div class="salary">berufserfahren</div><div class="summary">Online Marketing…</div>
+</a>
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/urban-sports-club/senior-product-manager-operations-martech-automation-all-genders-berlin-275551" target="_blank" rel="noopener">
+  <div class="title">Senior Product Manager Operations (MarTech &amp; Automation) - all genders <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Urban Sports Club · Berlin, Germany</div>
   
 </a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=c3a6065cebb1458f&amp;bb=iWaXU3y60SSUDvAxvbBJ8FEH1t9y2G2s4AQlts6PG2TEa78QhI9PeyPhMWG39CwPD9yxNnMaNdoAoVhrkyJJJkh8YwKcwdZECKEzi9FsF-EhANKs5mq3tiMaSIV6w_-UYOnmHN1XfYToFaIho7HcCUUPX-AiveUZrySJs1zgr6_QNs1jnYGJ6ecpW-H3CS7OWXkKcQb01lQ%3D&amp;xkcb=SoCe67M3h32ow9gNXj0ObzkdCdPP&amp;fccid=a0f4f1afa351ffb5&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Senior Python Backend Engineer <span class="badge">indeed</span></div>
-  <div class="meta">3Pillar · Remote</div>
-  
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/deutscher-bauservice-gmbh/projektmanager-technisches-projektmanagement-fokus-offshore-netzanbindung-molbergen-363111" target="_blank" rel="noopener">
+  <div class="title">Projektmanager Technisches Projektmanagement (m/w/d)  Fokus Offshore-Netzanbindung <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Deutscher Bauservice GmbH · Molbergen</div>
+  <div class="summary">Project Management…</div>
 </a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=57c55b04403ccf39&amp;bb=iWaXU3y60SSUDvAxvbBJ8KVDn4rZvLSMbEn4se4qgNbah_ocK9KbkTyNunJzTom4ISob-t1nBmYd4j09wSNYrXYxpo2ZnLzuX8pS3wSnyY4KqBW56i91Ag2LmBkZIG3UacXzvF5Jrojo_-jrduse1t9RRLJ4hOlHvTetbrGbizP9BPJhf8-wbOqHLAej9ZDE3YENkcXgeQE%3D&amp;xkcb=SoAD67M3h32ow9gNXj0NbzkdCdPP&amp;fccid=66403b30a2c0d89c&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Software Engineer L5, Python Platform <span class="badge">indeed</span></div>
-  <div class="meta">Netflix · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=e6f1255eb58fff40&amp;bb=iWaXU3y60SSUDvAxvbBJ8AejQ3H-QAvbjyHUJiip3_0rMekcRSrBf60vZak77csVJOLdCj2h8RwDfN719Qgi0jEuQ_x3T_pm8RY7_HuhhIKcq_pUtLxNbZfrof8Ub11g3pHWayhkDwLqQWboIErKt4Ocf08kDMu_DkhwdvT0DegyPvy0yVp9Lgb9GOdQWfoBsAsAKrrNGY0%3D&amp;xkcb=SoC367M3h32ow9gNXj0MbzkdCdPP&amp;fccid=66403b30a2c0d89c&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Software Engineer 4, N-Tech Systems Engineering <span class="badge">indeed</span></div>
-  <div class="meta">Netflix · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=baa8cd7a6efd8f7f&amp;bb=iWaXU3y60SSUDvAxvbBJ8Dw8Zr-IRqWPnkMhsKE3Oh8vtjQFhE5XMDgCU7FXyb-Qg04oYnsX9zp1zJB1TKw3_1jCJgluXVF6fI_Zb0h1uAvMfev4VvrP6gB5f1FKzfTlKLHMnRpOa9qzBDU-ZVAjcesolbup_sW6A8O6_865IfnhkoNmuIepoHfA6XAUOTCNdLdJzrnXf64%3D&amp;xkcb=SoDe67M3h32ow9gNXj0ZbzkdCdPP&amp;fccid=f28939088ecd11b6&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Backend Python Developer – Remote <span class="badge">indeed</span></div>
-  <div class="meta">Jarvis Recruitment · Remote in New York, NY</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=063990dcf00ca563&amp;bb=iWaXU3y60SSUDvAxvbBJ8CCawpdajmsfJ7mgC8mDDOZVa4C9QYhsicljXMAfayzEM6PBguZLDUJYnNKvlaLmIHbHBjiU2lwGJvROIfEcTYtmD3PwMPepIQd_X0s9FEI-eaac4dgMiPuz4KSf_G2uWE5VBrNBA_cPirSIgT7tg3B2yvE_-aJUo5dNZWBnJ90zsZFzRiisyeo%3D&amp;xkcb=SoBq67M3h32ow9gNXj0YbzkdCdPP&amp;fccid=6e2212a27883d692&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Python Developer <span class="badge">indeed</span></div>
-  <div class="meta">InfoQuest Consulting Group Inc. · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=cc8fa27424392a32&amp;bb=iWaXU3y60SSUDvAxvbBJ8ORPK3044sBPx3kYriwnpGmwXeLx7ExifKuIFCQqVyuPbjGKXBnL6Y9puEUvJmhp9cl65GPWt_uFx8HVJnJmRVgYICCnYk6mFvQWCqSvfqKSVicE137dPD7_ombF1OU9NQR2JpR5hhw8pZf3QUxrDWamprIoGZ-Iug5--XrnThXCT5nbgSX1Tlo%3D&amp;xkcb=SoA567M3h32ow8ANXj0MbzkdCdPP&amp;fccid=79052c2d5d41c361&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Senior Backend Engineer (Python) <span class="badge">indeed</span></div>
-  <div class="meta">Oura · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=ec559cb991b64913&amp;bb=iWaXU3y60SSUDvAxvbBJ8KVDn4rZvLSMDjW5g54XOYjXOo9sXb5TkMBYvvCK18B_P8ZUKPS6DVmd_NeMKajJsuTB5G3F-IpYOggR-N78jSBF887LrsaQPJAAOZ6Iql3UxyPKiUKd7IbdJARtLetbzGr_jyi5htTCtyEOAGafLJKSCe3GF6TvQqRH7LggySd9UMI4iL24URU%3D&amp;xkcb=SoDQ67M3h32ow8ANXj0DbzkdCdPP&amp;fccid=aa5767e478d2fc04&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">AI Platform Engineer – Developer &amp; Product Enablement <span class="badge">indeed</span></div>
-  <div class="meta">Ziff Davis · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/viewjob?jk=123456789abcdef0" target="_blank" rel="noopener">
-  <div class="title">AI Platform Engineer – Developer &amp; Product Enablement <span class="badge">indeed</span></div>
-  <div class="meta">Ziff Davis · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=9d37ae5f64071b8e&amp;bb=iWaXU3y60SSUDvAxvbBJ8Amlvv7fa9rDCoRW9cYl1H1ig221_NI-SgO6AYO_uu9lBJ8r7EeAPwFGGNQPRWKVgbFslYwI2Joapya17sPVxqy94ouv70rG73t7G1FZKUBkd_JFm0sqL2pbj9xI_1FCikK8JFAqaiL83g9QuAGa_nTJitdIBOwhUvbivIvHxnGIG9beVjZaLxs%3D&amp;xkcb=SoDk67M3h32ow8ANXj0YbzkdCdPP&amp;fccid=d4dd418dfdbf731e&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Senior Developer <span class="badge">indeed</span></div>
-  <div class="meta">ActioNet · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=4fd4b6b748b4746d&amp;bb=iWaXU3y60SSUDvAxvbBJ8GiGYK23dpNmvGa5bHVhxX9xKh6kxLszmR3iPDn7HrG4ZOsjkjINb_vt9acn1sNRghnk2i7s8Ju9y5hZa5vKnkhppjT7muMrmwpJlGz3P9lKM8V0NK_cAsGA18nkOxmKm5-rh2lgq_ghdi28dPgZPznLnOP0KgphxW9SvcisCryzLKJoAcl2sOo%3D&amp;xkcb=SoBq67M3h32ow8ANXj0fbzkdCdPP&amp;fccid=dd616958bd9ddc12&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Senior Python Developer (AI Evaluation &amp; Benchmarking) <span class="badge">indeed</span></div>
-  <div class="meta">Lifted, an Upwork Company™ · Remote in Texas City, TX</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=7f83a36f038fb47b&amp;bb=iWaXU3y60SSUDvAxvbBJ8Llm6azIX0AxuRe57Eyom1bCR-tbObo3ojsjJRQLL_qqDwVj_6OZ6oqy96wwAFmWZJLJ7xKJ6ZUI3sjjjMYt1v-Y8JMjjZ8DEWuxE_uYEZo_kp-Dr1DptFZWvrSwURwuX5yNZKuTIxWsEAZdOKZzrckRkx0mNKIIQtXPcWQAtD-ROk5Qu3A3TO0%3D&amp;xkcb=SoDe67M3h32ow8ANXj0ebzkdCdPP&amp;fccid=dd616958bd9ddc12&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Senior Software Developer (C++/Java/Python) <span class="badge">indeed</span></div>
-  <div class="meta">Ascension Federal Services Inc. · Remote in Orlando, FL 32801</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=4ed791b5fce97e51&amp;bb=Vv3hvwI_cu4RC5p3DUGa9oszUXYn780vrreCXfVqmTlOd2NXT1HoL9yR8i-eqrpszAtEJ5GeKHlMQm0d_w40sI2sqqypYAr03lWyA1GFY2nAPHNqPNI_ZZ-INSDvcqNh7Yus_N-yVK7bbfbx8j5VxYX5wDJKhlzserecS2VlZzE%3D&amp;xkcb=SoCI67M3h32n7_TxRR0LbzkdCdPP&amp;fccid=aeb15e43a6800b9d&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Staff Software Engineer (Frontend Developer) <span class="badge">indeed</span></div>
-  <div class="meta">Lockheed Martin Corporation · Remote in Colorado Springs, CO</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=82042737926131e7&amp;bb=Vv3hvwI_cu4RC5p3DUGa9lNgJ5lAH_BOXSc0WBjyIGD6n-4p6r-gEWOM_7b6QSNMFzmDBcCzio6KuARkvkvD2jE-Npcg-s8Jz49p0511bKNBdpuj-3f6oCtwUn96Z-vA1GLYRRKQpYyFAss5JET0wQSU2iJof7ZEE6stmRdBYy0%3D&amp;xkcb=SoA867M3h32n7_TxRR0KbzkdCdPP&amp;fccid=ea6bb53f0b18b8f2&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Software Developer <span class="badge">indeed</span></div>
-  <div class="meta">Siemens · Remote in Buffalo Grove, IL</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=6c260d5477c7570f&amp;bb=Vv3hvwI_cu4RC5p3DUGa9hPUGb7559i_hFQ01NvRgx33uUpHGYrwxRm1_jatFc3yGcIajQ0CSF7PmZ-ZZQNpUCl7EajaiiwKNE70ua1YahH0nLuKYl-vIBXMcFm3cqbTyrS14jenbGPpojNaii75HNnTjHHy25wdorB70hDy_FY%3D&amp;xkcb=SoCh67M3h32n7_TxRR0JbzkdCdPP&amp;fccid=b4048be2884af072&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Senior Vice President, Front-End Engineer <span class="badge">indeed</span></div>
-  <div class="meta">The Bank of New York Mellon Corporation · Remote in New York, NY</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=3fbf4efb976d0eec&amp;bb=Vv3hvwI_cu4RC5p3DUGa9k7WnMJ1XJthPQoOhT_ZCcVJNRBhPANaipfPz9awNTJ9f6HOX4dkktTEOQk1ejH6fRErd3Q60KVnK6t_rfSjbQCEOMQjCAKzesFo8tOseOIohQT1h0V4tsw3JI3ggldHmzBZtp-LqZL0kJgG3gMgkZt50ZHcaOcoAA%3D%3D&amp;xkcb=SoAV67M3h32n7_TxRR0IbzkdCdPP&amp;fccid=810178099fb1fcbc&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Frontend Engineer <span class="badge">indeed</span></div>
-  <div class="meta">UST · Remote in San Jose, CA</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=e4d4bf58c2eff930&amp;bb=Vv3hvwI_cu4RC5p3DUGa9m05lgk7E6bq3P_5SW6l9lKUvS5YsrylJ1G5gx6xrfOOv10XTljG721lmjLfp6Lg_sjGDekj_SxXo3_-VYSdPE819d9L3s783Qo2zbu638bSzjZR48pZxWdCcFetx4QwcI9f1HlmcmFa6qgviGENUVM%3D&amp;xkcb=SoCb67M3h32n7_TxRR0PbzkdCdPP&amp;fccid=353eb997fc901045&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Technical Consultant - Front-end Development <span class="badge">indeed</span></div>
-  <div class="meta">Veeva Systems · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=aa9d39fc75adb6b6&amp;bb=Vv3hvwI_cu4RC5p3DUGa9lU2_sN6DS1INFsLguv1YRCi92a-fupR_J9ol9o5Mmvk9dGhPGk3RtCm7Dj6QLjzR3wYG4xVuNk_K5JE4m9IpHi38o2kAaZgU072QJhJZgxwrCI0DgWs_Jpvvw4fL1QQ-nT6W78fS5ZBiyzafQZrgbc%3D&amp;xkcb=SoAv67M3h32n7_TxRR0ObzkdCdPP&amp;fccid=2385f8ebf01f1b76&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Fronted Developer (React) - Springfield, USA <span class="badge">indeed</span></div>
-  <div class="meta">Photon · Remote in Springfield, MA</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/viewjob?jk=890abcdef0123456" target="_blank" rel="noopener">
-  <div class="title">Fronted Developer (React) - Springfield, USA <span class="badge">indeed</span></div>
-  <div class="meta">Photon · Remote in Springfield, MA</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=acd43ea2dbb146f8&amp;bb=Vv3hvwI_cu4RC5p3DUGa9kcvW4wgY8kdardYwcpxKAx8bkCJeReqRtOFzTNm-LHqVcydUvg60H3-_t-AwuHEv7BwL1Dg01DrKcxEKueoLWDFRAcjR6ecojG1Wk645LBpoo3WkfWyT92VNOuMekPxLEqqVXge7E4Nw73h_kwEcgg%3D&amp;xkcb=SoCy67M3h32n7_TxRR0NbzkdCdPP&amp;fccid=353eb997fc901045&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Senior Technical Consultant - Front-end Development <span class="badge">indeed</span></div>
-  <div class="meta">Veeva Systems · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=c069b4048ec7671e&amp;bb=Vv3hvwI_cu4RC5p3DUGa9mtnzYSU2t_ExluokIGva246RXz-DnIvdD-dj2omd6X1oW1i88S7UaDGU1b0bnAo2dnat7SDXa3lTiEiiNRHQ93LwvBsnclOfLd3kMnyTt1csi7UCyVPwOiVtDusDvOx9qoO-BxW2oOqRaDhaUOTNVh6ysy1j6m6HA%3D%3D&amp;xkcb=SoAG67M3h32n7_TxRR0MbzkdCdPP&amp;fccid=750bb2e27e97e3c1&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Software Engineer II <span class="badge">indeed</span></div>
-  <div class="meta">PlayStation Global · Remote in San Mateo, CA</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=eedccab20ee299c7&amp;bb=Vv3hvwI_cu4RC5p3DUGa9jz12bIaowHnonGsSz4AgzxHKn97-fIqHus-67Imnoqo98O518HcARvUsnCaoyPIgYVTIHtVvp_oRnFqVZbEe6nEZ2V6GO35FJsVpkKrwd4QcJchBzSDZGEztc0t-isgObHb8y3mIeQIIdRLcjK4jkk%3D&amp;xkcb=SoBy67M3h32n7_TxRR0AbzkdCdPP&amp;fccid=2cd10564780b27e2&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Frontend Software Engineer <span class="badge">indeed</span></div>
-  <div class="meta">Twilio · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=c9f86b37793fefe7&amp;bb=Vv3hvwI_cu4RC5p3DUGa9rTfH5Wa-uhHn-BukUy7YF2d2BpHOgPynuq4bi-96baubvBC6KwcuXoqPaTABNYI8BoB8Ox7aTqXDp2c7FEGf_h-nsirh-m4HfGNiCanrZpJ2FcGsmNYbG2WrBsVBUSp04HnduYk5CNvUIIt_0Ut6WQ%3D&amp;xkcb=SoD867M3h32n7_TxRR0HbzkdCdPP&amp;fccid=e1da521316e5da26&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Recruitment Web Developer <span class="badge">indeed</span></div>
-  <div class="meta">Miami University · Remote in Oxford, OH 45056</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=8dfe587a61affa3c&amp;bb=Vv3hvwI_cu4RC5p3DUGa9vqnl4KbgjhmjB1wJRdNn1euFlmn5zacJo2ecj_tm5OuMWC1ek6F5mQHqzXgmW92EXYWJaF4EFwvq1YKWUNAh-rzu38OharMLiRpoCXkVN8w8T38Ae81zE0be78UyQyLPYf-DUURdkTFBwD5Y9-qhViK4cJBHFHrRQ%3D%3D&amp;xkcb=SoBG67M3h32n7_TxRR0bbzkdCdPP&amp;fccid=e98d9b77b87ada33&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Web Developer <span class="badge">indeed</span></div>
-  <div class="meta">Qode · Remote in Sarasota, FL 34236</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=aa22bafa5659f48c&amp;bb=Vv3hvwI_cu4RC5p3DUGa9thU7a2-1UEnuaZ2LXWgFv__WzbF4qr0RnfYPOJu_xlLZXCzPU-D-_u4msp8thJO5b3Z0tlc32h9u3q00tsneBW547SMllpBp2EIEd-ezEZJVZLUkjRgSsxbSem9GKlzO_j-cYs6ZVpuyiWwECVnHu9g944HvNNCfA%3D%3D&amp;xkcb=SoDy67M3h32n7_TxRR0abzkdCdPP&amp;fccid=4bada4354e855520&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Full Stack Developer (Frontend Emphasis) <span class="badge">indeed</span></div>
-  <div class="meta">Agile Defense · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=a91ed91045b5ce64&amp;bb=Vv3hvwI_cu4RC5p3DUGa9vUjugXlQXhkRJBzM99_zIFjUpPLtsXhrynQ0w0s-D6BSXV2oxkL3yC9cFvrwI4tO-06dQrbfCMhATqsspGm524ePM6Ho-Q6oZOhJwT28HOwXlcgXM1fQpRTfJeCL2un49K4UJix3lnOQIYz72R9zneUeRbwoca44Q%3D%3D&amp;xkcb=SoDh67M3h32n7_TxRR0ebzkdCdPP&amp;fccid=f28939088ecd11b6&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Senior Frontend Engineer – In-office (NY) <span class="badge">indeed</span></div>
-  <div class="meta">Jarvis Recruitment · Remote in New York, NY</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=72e5729b1feec101&amp;bb=Vv3hvwI_cu4RC5p3DUGa9kob1L9lUydFA_uJohqUCzNbIoMClHnIesLVna_LViWzYwz_DIeXQxRUYeg5bningDP8fH2lpLLVL0C4lb4WAfmbZ3wjFIGymhubsp95EtqQ9Fq50XNy2umXOpbjGFIZmoXNr4_bTl4NWeussXkCZcooXkSqJL4KhQ%3D%3D&amp;xkcb=SoB867M3h32n7_TxRR0dbzkdCdPP&amp;fccid=1a256481c0f30de5&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Sr Front End Developer <span class="badge">indeed</span></div>
-  <div class="meta">Connection · Remote in Concord, NH 03301</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=28139eec129bcd8a&amp;bb=Vv3hvwI_cu4RC5p3DUGa9lzd4cNXN1Px9amq99LSKZy26b_KKp_OydgBTU52Ci723h1Sq13yO7CzeafWpFF9K7k9Yr-I-zmEREgTz_1WZTZiPbybHO7afmZkxVqzwzwo1y7wMG6Cta9_YtOW-i8I7zAuGsH13PMuj1ecZMW-gF4%3D&amp;xkcb=SoDI67M3h32n7_TxRR0cbzkdCdPP&amp;fccid=c9538b927313f8e0&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Staff Software Development Engineer, Web <span class="badge">indeed</span></div>
-  <div class="meta">WEX Inc. · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=f381c409744c560d&amp;bb=iZE8cylyIYNlNDFqsoYfrYVjRJBeRVkXZXWlUUf78KQvy56mrMXbxM8oz8JafLcuuNpR2nc_wQP47w6eaE9oJw9Lv_OpAcaLIQ6IS8D4FicIfjl8Wgt8g5sM4bnKheyakE3RWtnCjc0tG5RxUr7r6UUhDIgdX0bMDSLWWR3NboUPalg0ci1e2PrFF58YQujk&amp;xkcb=SoCI67M3h32m55wybp0LbzkdCdPP&amp;fccid=4562324cfcd78c48&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Program Support and Data Management Analyst <span class="badge">indeed</span></div>
-  <div class="meta">BryceTech · Remote in Washington, DC</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=ccf4621485df3664&amp;bb=iZE8cylyIYNlNDFqsoYfrQbK2xwFJgmJ4AyKETp_I4T5tFSmnC0eYOvPX6qsD6MXEmQOUe4Xd13jXpDhbjPOodqZ9UdcuHn25YkU3Gb_OuR1YAdj0Jxs0-PlcM5Xmvz6YSGHeFh7kd97hTuwRlY4V-sINVaWD7YhlhLmG8b6IGbbOQpWW9ERrRgS23U0nLuX&amp;xkcb=SoA867M3h32m55wybp0KbzkdCdPP&amp;fccid=eb6f6acd10956658&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Part-Time Survey and Data Insights Analyst - Contract <span class="badge">indeed</span></div>
-  <div class="meta">サイネオス・ヘルス · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=6be24da3968a72b5&amp;bb=iZE8cylyIYNlNDFqsoYfrcVA8GQsNx7nBcZH_0zLlfk2TtQn1u-o0-v5h60BY-ERk7OR0nrpnpLb9bd_2m04rCv_i5iA5V4wXxs2LF8asODUoR_QGVeGdfzH9gGWBR41HDlLWa9vuOIw2WSRkpjK7_plzx9RmWI9R8pdxcSgypK2Zys2UbPlL5L9oxxkbLN5&amp;xkcb=SoCh67M3h32m55wybp0JbzkdCdPP&amp;fccid=8791d2cf0cc15534&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Senior Compensation Systems and Data Analyst (Remote) <span class="badge">indeed</span></div>
-  <div class="meta">ScionHealth Corporate Support Center · Remote in Louisville, KY</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=c16874dc43f113da&amp;bb=iZE8cylyIYNlNDFqsoYfrfdAc0QSmBlorAKklifwlglm3okSwT7A6efxWz-3WP1UytLfJdTvyvxqmrm6Wx3hNuqJV1IugBGpcV9XnHX91gdzDWhDbvUAvJPEMEIU__QyWVLaK9y1QqbYIvo5R9rO8oXSJ6KJPc59sfDSHtd4uvsMrcHtdgxq28rRqZqJ4jdY&amp;xkcb=SoAV67M3h32m55wybp0IbzkdCdPP&amp;fccid=105ecfd0283f415f&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Contact Center Data Analytics Consultant <span class="badge">indeed</span></div>
-  <div class="meta">Capgemini · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=438e55e8b7bc505d&amp;bb=iZE8cylyIYNlNDFqsoYfrcVA8GQsNx7nfqYBFf5yo3JuHWyVeUxd1rGIihXnEob-Vg6y2Z2EdcIcOnCv8S6yiOCerLUWeI69VBBAhoULwytuMzICghVoo7Wqv7NgPI6A5ACckNcQrQriaoA6R3msOA5B2e4Kq2RnsRCCGMVhQlYLuZqArrF-RUC3GA6zrbgz&amp;xkcb=SoCb67M3h32m55wybp0PbzkdCdPP&amp;fccid=3ed0572c448b2368&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Clinical Data - Business Analyst Role <span class="badge">indeed</span></div>
-  <div class="meta">Intone Networks · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=36d985ba1b87aff4&amp;bb=iZE8cylyIYNlNDFqsoYfrdDfgxfMpNzujxgnuwIWDNOgSrraTlUDUTlpti1ZLyP_UPIqdulI9cArGogcAJi0vwFuvmW8-8BrTYfFxP4MLzAweR2bCrf7bUbrspqGP4Z_5SKb5SqWVAGzodNh3S75AdwVSfyOnmGPHoWxOcrpxsF9jMayLq6Y6EkFAnoWhisH&amp;xkcb=SoAv67M3h32m55wybp0ObzkdCdPP&amp;fccid=87f38351bd29de24&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Commercial Insights Analyst <span class="badge">indeed</span></div>
-  <div class="meta">Eaton · Remote in Menomonee Falls, WI 53051</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=557dfb14f0a3f6f7&amp;bb=iZE8cylyIYNlNDFqsoYfrTQuW2HtDSUCaiegQ_gWgIWICS5LeCSJiRNgXLRb-oAziE7EtBQrdj1JMjYwugo5SkxvNpR4A9vm8iAhXVYc-rYYRiYPtmfZVmSTiCFfIBE_dklI_ggP_Cr8elXrzb2hXOspE713LIB2b2duQ8xegZOB27SORdBkDbDwCJOicKfC&amp;xkcb=SoCy67M3h32m55wybp0NbzkdCdPP&amp;fccid=e082683e6e0bb617&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Associate Analytics <span class="badge">indeed</span></div>
-  <div class="meta">Gallagher Bassett · Remote in Rolling Meadows, IL 60008</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=8d713ba2d1ffab4c&amp;bb=iZE8cylyIYNlNDFqsoYfrT4LrQYS0OniW1Vh5ikS7qP-CcI37ou_15xB_2HWi4BPm6vZWo_KhiXXSeZSsKXMzNKMHvZf_xB32vNKaZb2wAiuwV-PeeUU_go0_RT28YfQQ3YCzlzI-SB0G0YLcDVxd65cvUczzEgfyiGLjjw-ZSuk3HMxVb6rVQk0XD5o0Iu1&amp;xkcb=SoAG67M3h32m55wybp0MbzkdCdPP&amp;fccid=3ed0572c448b2368&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Senior Data Analyst / Data Modeler <span class="badge">indeed</span></div>
-  <div class="meta">Intone Networks · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=3535f5ceaf735d48&amp;bb=iZE8cylyIYNlNDFqsoYfrU_2xFGkEqFDmdMCNJjM3NNJNrBBHTYf6MRB2iwf00NI4J_eEdEX_zLy3yxfC-KJkuCi_xdl4vR5o_kqYJOiuAIjMYNthaoTOjCwrKCoMKSF_Lf7gjqt1kYxopNv8JgfdfIKpbqe9IkaNpb-oK0CBMBhHOKLaLlymHJAT48TxFN7&amp;xkcb=SoBy67M3h32m55wybp0AbzkdCdPP&amp;fccid=3ed0572c448b2368&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Data Engineer/Analyst <span class="badge">indeed</span></div>
-  <div class="meta">Intone Networks · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=efcd32ce547cf9ab&amp;bb=iZE8cylyIYNlNDFqsoYfredFUi1x285PDauUX4-dLdorkfI1ofHA2BnFWZOzPh0q-HloADlioAKLu9GfYoCiQjLYXbQpnNDNGHvkDYxCL-DGPBKDT5kRy9ZIXE4XODBg0GgrIxv-sTJbCVl1Ue2jWEXBVSob3icZCU0ffErMcRA-Ol520DV3-jhb7kIulEJq&amp;xkcb=SoD867M3h32m55wybp0HbzkdCdPP&amp;fccid=3ed0572c448b2368&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Senior Data Analyst <span class="badge">indeed</span></div>
-  <div class="meta">Intone Networks · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=688edf8592c30bce&amp;bb=iZE8cylyIYNlNDFqsoYfrXPzdHrhosvDZM_jKZdoq3t7qhA6wd0tkZLS81II2wFesOD7sF6zdrPvTDNjOPWPiUVxMXhaHiq_G6Sv5H4p9o71UPC8KNedCn45Zb1Jr4QrkILT2v17ObzrK4V82XD8hI__e1W72CQGUssXlPnolyUl3G-KkiWe32AuaJ_6HCiZ&amp;xkcb=SoBG67M3h32m55wybp0bbzkdCdPP&amp;fccid=f33a9750898d12d4&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Principal Analytics Analyst, Data Office <span class="badge">indeed</span></div>
-  <div class="meta">Liberty Mutual · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=f48f5db0292c0b2d&amp;bb=iZE8cylyIYNlNDFqsoYfrUGiukR8JnxzvC-nusSuEY5UvbblQzbKggk3WSpRyZkE48W-shw8hOD8tB7_z91t4us5L3kYmVMavIlvEhtxan7JiTAXAqs7yS3os5EXD_4jobKvZiNsjZdDxobHCs9ixB3_t8idfLtuX-b-xzKKM8B3sUda2SJ6agccn6ZG-Y1s&amp;xkcb=SoDy67M3h32m55wybp0abzkdCdPP&amp;fccid=062aeac481a6848e&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Part-Time Survey and Data Insights Analyst - Contract <span class="badge">indeed</span></div>
-  <div class="meta">Syneos Health Commercial Solutions · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=62ae70aa3ee3d157&amp;bb=iZE8cylyIYNlNDFqsoYfrcTwsSeALsGmnoVAr7pHz_R160N9wh9r1sOYiCr0M09IuL76n_6MnczxCJw0Nz__GMvkMVvp7RGkL6TY4Gcwjxa11GE2RJRFha2kqjCRRsMzxoeiEhQGivrFDC_w-mNtnV5ClDJdDsduhJfsNB8VC3OVYESxqkNLkvoDRbvVesKT&amp;xkcb=SoDh67M3h32m55wybp0ebzkdCdPP&amp;fccid=deb0d940417cba98&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Associate Data Architect -- VH IT Business Intelligence &amp; Population Health -- (REMOTE) <span class="badge">indeed</span></div>
-  <div class="meta">CAMC Health System · Remote in Charleston, WV</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=6d05f62239b27b73&amp;bb=iZE8cylyIYNlNDFqsoYfraidxa0Ydxt1kPjy1KJ8ywHTycUZccLKVRn9kWvCBX7OT_kfjAOYdfQTvYGaEypWGrpsookMrD9LlBMlSSa79q3odkR4CNPPISj2zrg66fc_hGalgkp2bv5WSxsZl65bvcOtxSsXd703SgeO3vXFaN_gwFXeoA1ChWk_csUIF06G&amp;xkcb=SoB867M3h32m55wybp0dbzkdCdPP&amp;fccid=2c62e4de04b8f952&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Senior Technical Analyst, Employee Listening <span class="badge">indeed</span></div>
-  <div class="meta">Nike · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=12848fe2f3c64e0f&amp;bb=iZE8cylyIYNlNDFqsoYfrYbBhSly2A3I9PZJxyBhof-Dr2kfYaF1gJFY4IlmyJy7MQMk0tl9ribZo9Jithln1Lm5kk-S6JRoZ1Dj8HiphIwlbl3LyGZ7D-rLck6x9Au33btB49WY7TmW1bwvC21s79TaB52efa0ofQDaWmeCzZPSKu_lEHE40MiAJDq065mQ&amp;xkcb=SoDI67M3h32m55wybp0cbzkdCdPP&amp;fccid=be293f1def77a963&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Director, Gartner Analyst, Data Quality (Remote US) <span class="badge">indeed</span></div>
-  <div class="meta">Gartner · Hybrid work</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=478e05589facdb77&amp;bb=aWKdJZhylVI7WnAq1NxsyYvZnuAjJuegUFLDYxolag3iK09ritha3OGMXUpVdIhhvM2sXzokDk_g72Fw_isPDr4QukcquubG6dD9urU1YS9vxOZNzFhsrh_Hbt7OMihK1gMl-8s6F8GW52hZRKcO3p1baUHR_hIYGLKGPbeFiUeRFzdjW4mQFA%3D%3D&amp;xkcb=SoAZ67M3h32l4xSg8x0IbzkdCdPP&amp;fccid=3ed0572c448b2368&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Quality Assurance Specialist 3 <span class="badge">indeed</span></div>
-  <div class="meta">Intone Networks · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=d99c0e90e07f0084&amp;bb=aWKdJZhylVI7WnAq1NxsyfTJ85puL7JPYhxTIolmhxK9rZDVS7EWUJ4Gyj-iI-NTMyU26X17nImzC_57-2gebqyyTiWYRewN5ZDYTdlDD1BpHCDHVK7p3sw3UKfr3_YWVZbRBdAv5I_5yIfo2EKUUKOI9jPR0PHDNXV2c4sEdr0%3D&amp;xkcb=SoCX67M3h32l4xSg8x0PbzkdCdPP&amp;fccid=f4ffd59c67b2ff67&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Cash Applications Specialist <span class="badge">indeed</span></div>
-  <div class="meta">Hachette Book Group · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=672249c9e83dfe20&amp;bb=aWKdJZhylVI7WnAq1NxsyYgkNDS0G4aqnSz55yiJjbsRFT8prLIZvSi5gyQpfqY-ycTXziqkVcD34Fd-DLFSZerG5c1UMt0XHX4j2EHwQXto_NyhUfT-ZmLYQ2HZKq95V4vcHRBTRHiNOBL9bMQmhNTiXHjHnlr7MpzOK-jR-ug0jU7oPZMD8Q%3D%3D&amp;xkcb=SoAj67M3h32l4xSg8x0ObzkdCdPP&amp;fccid=d4b7d52ad4cd4aa2&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Customer Experience Journey Specialist <span class="badge">indeed</span></div>
-  <div class="meta">Kandu · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=31618e3c6d0de1e7&amp;bb=aWKdJZhylVI7WnAq1Nxsye5o8cSbIFq5eK81SGaTBmCXQR3SwNP3eqehgCCravcssSbF3lVATyUdOUJl2bzkAiIvwOmuoFZCtB3uOcUAjiWilvDKhFY8D_8e7v2MGF5oy8s6tkRsay-p6HashXSfrFqh_AWwRmMbeL0cf_A3KHg%3D&amp;xkcb=SoC-67M3h32l4xSg8x0NbzkdCdPP&amp;fccid=e0fb03b374b827e0&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Student Safety Specialist (Content Reviewer) — Part-Time / On-Call <span class="badge">indeed</span></div>
-  <div class="meta">Lightspeed Systems · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=85a043c094379bb5&amp;bb=aWKdJZhylVI7WnAq1NxsyTG_oP_Sekto6S4JlXj12WAZzqF0AsYVAiaAPR4W2yWYXl64csV9OiAVO6Ub7JssjV7nYJbV7ISpSjdi715KP0inEouIVJXxguuRqZaU8iEzJYvOIPlmMoJEZaB1fSbg9WIeoCNfC30dPgLe_o-3MDYeV-Z45s2E6g%3D%3D&amp;xkcb=SoAK67M3h32l4xSg8x0MbzkdCdPP&amp;fccid=ee3bc270b835dde2&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Associate, Operations <span class="badge">indeed</span></div>
-  <div class="meta">Learners Edge, LLC · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=7b72d71577504fa7&amp;bb=aWKdJZhylVI7WnAq1NxsyeDIUSHfBZiyR2tf8zApTM3XzCjKiN0kDMGOkd9tZAzioudwmwyx3Brbq5S10h2rMyAEvVBXfXXZJ4mskB1obPhWl5dQaKW6RkbKslzsCaxiawX3fckvUPqJ0cMEFskOjBjzF_6-CX-G-45qrm8dd24NI34f5qrNxQ%3D%3D&amp;xkcb=SoDj67M3h32l4xSg8x0DbzkdCdPP&amp;fccid=38e057261a434f79&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Major Correctives Training Specialist <span class="badge">indeed</span></div>
-  <div class="meta">GE Vernova · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=63cc72b2f646ba31&amp;bb=aWKdJZhylVI7WnAq1NxsyRLBGztWkM-_QGNlRigOydOLswvOXk7m3KVyFD9Z6dSQ570o51f04UdW08LaLdG2UEV86Vq_4jSs9_1zOo2Z6uMmBHAN5EcCLlsCUyatemfeFx7bLzWuMjaawi5Ley-Wg83EAgjfF73bk-IFw0nM9d6u3lfZNsljoQ%3D%3D&amp;xkcb=SoBX67M3h32l4xSg8x0CbzkdCdPP&amp;fccid=38e057261a434f79&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Entry Level Technical Field Advisor <span class="badge">indeed</span></div>
-  <div class="meta">GE Vernova · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/viewjob?jk=456789abcdef0123" target="_blank" rel="noopener">
-  <div class="title">Entry Level Technical Field Advisor <span class="badge">indeed</span></div>
-  <div class="meta">GE Vernova · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=fbbbb4d94d84cf49&amp;bb=aWKdJZhylVI7WnAq1NxsyQI-SSkXygoR0-sxTvpJHrQtOsh3mlTReO48CMexaK9-wtXuvm5MacmIm4w48DFpyv5cnGS4eEeqNlTkHxKEaDIWVL-4o9oTQRTepLdEDKpF_U6pGbFnfhc2ARkZ1_gzVxcZ4Hh-ayyMN3OoCn_HSeE%3D&amp;xkcb=SoDK67M3h32l4xSg8x0BbzkdCdPP&amp;fccid=105ecfd0283f415f&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Facilities &amp; Construction Purchasing Specialist <span class="badge">indeed</span></div>
-  <div class="meta">Capgemini · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=9c4223b1c4355ffa&amp;bb=aWKdJZhylVI7WnAq1Nxsye5o8cSbIFq5Gl3Nz3tYrTr5BBaH8XPj5luHjmC-nGC5fuAAcu1Y6a1S1pqFU-x30vG0gsaySp9sZM432bVcgukKsGMMHMMk7JUW-4-4hutbyQuhk8K3slZ7SM5YYNm7fTf6YJU2n-yJwOUCj9l5QcA%3D&amp;xkcb=SoB-67M3h32l4xSg8x0AbzkdCdPP&amp;fccid=ee2f4bc11785683c&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Extra Help Assistant <span class="badge">indeed</span></div>
-  <div class="meta">University of Arkansas · Remote in Little Rock, AR</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=9597b63563fd47b9&amp;bb=aWKdJZhylVI7WnAq1NxsyWVEmLJadZNevjkTVwIlOT8xNNj8gpwbvNNGRJtFdGNirP97g9bipK6SI9o7jueJEa0Zo0ebxD7ab7Bd-pWgAF0TnQq70MDO0A2m2B1v7jXS5YI22vgml3Uz5d8eBTrK-y8_JPG3z5gjPMb3QgnyLbMAa5xNTa7MeA%3D%3D&amp;xkcb=SoDw67M3h32l4xSg8x0HbzkdCdPP&amp;fccid=3ed0572c448b2368&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">PeopleDoc Specialist / Administrator <span class="badge">indeed</span></div>
-  <div class="meta">Intone Networks · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=c3dabbe93ea3d7c4&amp;bb=aWKdJZhylVI7WnAq1NxsyfRJnCSUtux8tfF5in_IjK7dfZ38u1oP4B9covZdR3OZshWIu8iD_NfUtlziuftgqyLu5gMq-PFml9rwv-7l36Y934vt-qIxq0HeT70DtNYh1zmhnN0iKEmwVrB2yie9shPL7bWCFTQc1HjhzjeH1aiHuuUcXmS-kA%3D%3D&amp;xkcb=SoBE67M3h32l4xSg8x0GbzkdCdPP&amp;fccid=3ed0572c448b2368&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">AR Specialist <span class="badge">indeed</span></div>
-  <div class="meta">Intone Networks · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=fc76b18fd1eac20e&amp;bb=aWKdJZhylVI7WnAq1NxsyQmpIvt0_DnO18bhu4Zo_W13-XXpUHfEhXmdWguZK14vxelLN6RPj_WNtFSlhMjesdLv_XO4yBojKLC-Hpeh1AK90LBWZ7tgQCr6ioevwWlytUF11H_AdaMSHa3B18j0f2osGoVKDXdtL0Y2cCfXMig%3D&amp;xkcb=SoDZ67M3h32l4xSg8x0FbzkdCdPP&amp;fccid=353eb997fc901045&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Consultant - LIMS <span class="badge">indeed</span></div>
-  <div class="meta">Veeva Systems · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=87630338ed1c3643&amp;bb=aWKdJZhylVI7WnAq1NxsydSYVxdF64IodrL5kER5WH8JNt_ak_KLt6V4jB-vkGuz_nS1vBaaGucBZ6DNWvn1N3mK6mj25U2A-Rq958alzr0lMzBdOX5UECCmpRt9mwHBxWbA_A7AhwhVMl9h8IL1JYMeXpEjA3UXJ8u-lfkODsXXOIBe10Papg%3D%3D&amp;xkcb=SoBt67M3h32l4xSg8x0EbzkdCdPP&amp;fccid=750bb2e27e97e3c1&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Portfolio Strategist <span class="badge">indeed</span></div>
-  <div class="meta">PlayStation Global · Remote</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=c630977b42eaa2fd&amp;bb=aWKdJZhylVI7WnAq1NxsyYvZnuAjJueggwyvMlVYkfn9yw-sL45f6jbrI9RoszR-N4laD4WxE7atzJuin5tf4o9zDCPBrOBDRUu-cwOtpSmHTI_Yqge-fKzHJBX9GMkkCAG-h10vGu1iqxbkSQU5SZwcl3T31o5YB6vGhrlib3k%3D&amp;xkcb=SoBK67M3h32l4xSg8x0bbzkdCdPP&amp;fccid=aa0a5cbd88d36750&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">(Remote) Consultant - Job Accommodation Network <span class="badge">indeed</span></div>
-  <div class="meta">West Virginia University · Remote in Morgantown, WV</div>
-  
-</a>
-<a class="card" href="https://www.indeed.com/rc/clk?jk=da318d5d16013e93&amp;bb=aWKdJZhylVI7WnAq1Nxsyb_cFrKHjmhAWnswClzQk6Hi93FJRSN9d2m8toRfYytxNYhypvL2hdlQPMER1p0FFr4xPL2lKXID8crFkJ_Odm2MIuIN9RPukXP906izYiC7ljUmD7DEVkygkG2KiccYI2_yaC1dACXysYTYQh0xYl8%3D&amp;xkcb=SoD-67M3h32l4xSg8x0abzkdCdPP&amp;fccid=0d45dc4fe60ffe27&amp;vjs=3" target="_blank" rel="noopener">
-  <div class="title">Invoice to Cash (I2C) Global Process Leader - US Remote <span class="badge">indeed</span></div>
-  <div class="meta">Henry Schein, Inc. · Remote</div>
-  
+<a class="card" href="https://www.arbeitnow.com/jobs/companies/deutscher-bauservice-gmbh/projektmanager-windenergie-mit-dem-schwerpunkt-genehmigungsverfahren-molbergen-281603" target="_blank" rel="noopener">
+  <div class="title">Projektmanager (m/w/d) Windenergie mit dem Schwerpunkt Genehmigungsverfahren <span class="badge badge-arbeitnow">arbeitnow</span></div>
+  <div class="meta">Deutscher Bauservice GmbH · Molbergen</div>
+  <div class="summary">Project Management…</div>
 </a></div>
 </main>
 <footer class="footer"><small>Jobs from Indeed (scraped daily via GitHub Actions) + legal job APIs. Auto-refreshed on schedule.</small></footer>
 <script>
-let ALL=[];
+const ALL = document.querySelectorAll('#results .card');
+document.getElementById('src').textContent = 'via arbeitnow';
 function filterJobs(){
-  const q=document.getElementById('q').value.toLowerCase();
-  const items=ALL.filter(j=>!q||(j.title||'').toLowerCase().includes(q)||(j.company||'').toLowerCase().includes(q));
-  document.getElementById('count').textContent=items.length+' jobs';
-  document.querySelectorAll('.card').forEach((c,i)=>{c.style.display=items.indexOf(ALL[i])>=0?'':'none';});
+  const q = document.getElementById('q').value.toLowerCase().trim();
+  let shown = 0;
+  ALL.forEach(c => {
+    const text = (c.textContent || '').toLowerCase();
+    const match = !q || text.includes(q);
+    c.style.display = match ? '' : 'none';
+    if (match) shown++;
+  });
+  document.getElementById('count').textContent = shown + (shown === 1 ? ' job' : ' jobs');
 }
+filterJobs();
 </script>
 </body></html>
