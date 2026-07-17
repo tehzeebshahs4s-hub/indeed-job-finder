@@ -11,6 +11,7 @@ from app.config import settings
 from app.database import init_db
 from app.ratelimit import limiter
 from app.routers import auth as auth_router
+from app.routers import dashboard as dashboard_router
 from app.routers import favorites as favorites_router
 from app.routers import jobs as jobs_router
 from app.routers import pages as pages_router
@@ -42,6 +43,7 @@ app.include_router(auth_router.router)
 app.include_router(pages_router.router)
 app.include_router(jobs_router.router)
 app.include_router(favorites_router.router)
+app.include_router(dashboard_router.router)
 
 
 @app.get("/health")

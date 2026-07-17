@@ -108,3 +108,83 @@ a:hover { text-decoration: underline; }
 .badge-indeed { color: #2557d6; }
 .badge-adzuna { color: #9c27b0; }
 .badge-jooble { color: #1a7f37; }
+
+/* ===== Dashboard ===== */
+.dark-toggle { font-size: 1.1rem; padding: 0.3rem 0.5rem; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; }
+.stat-num { font-size: 2rem; font-weight: 800; color: var(--primary); }
+.stat-label { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.salary-bar { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
+.salary-bar-fill { flex: 1; background: linear-gradient(90deg, #1a7f37, #4caf50); padding: 0.5rem; border-radius: 8px; text-align: center; }
+.salary-avg { color: #fff; font-weight: 600; font-size: 0.9rem; }
+.salary-range { font-weight: 600; white-space: nowrap; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+.bar-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; }
+.bar-label { width: 130px; font-size: 0.85rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-bg { flex: 1; height: 20px; background: var(--bg); border-radius: 6px; overflow: hidden; }
+.bar-fg { height: 100%; background: var(--primary); border-radius: 6px; transition: width 0.3s; }
+.bar-fg.blue { background: #1a7f37; }
+.bar-num { font-size: 0.8rem; font-weight: 600; min-width: 24px; text-align: right; }
+.pipeline { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.pipeline-stage { flex: 1; min-width: 120px; text-align: center; padding: 1rem; border-radius: var(--radius); border: 2px solid var(--border); }
+.pipeline-stage.bookmarked { background: #f0f4ff; border-color: #2557d6; }
+.pipeline-stage.applied { background: #fff8e1; border-color: #ffa000; }
+.pipeline-stage.interview { background: #f3e5f5; border-color: #9c27b0; }
+.pipeline-stage.offer { background: #e8f5e9; border-color: #4caf50; }
+.pipeline-stage.rejected { background: #ffebee; border-color: #f44336; }
+.pipeline-num { font-size: 1.8rem; font-weight: 800; }
+.pipeline-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; }
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+.tool-card { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); text-align: center; text-decoration: none; color: var(--text); }
+.tool-card:hover { border-color: var(--primary); text-decoration: none; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.tool-icon { font-size: 1.8rem; }
+
+/* ===== Applications ===== */
+.app-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.app-card { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; }
+.app-card.applied { border-left-color: #ffa000; }
+.app-card.interview { border-left-color: #9c27b0; }
+.app-card.offer { border-left-color: #4caf50; }
+.app-card.rejected { border-left-color: #f44336; }
+.app-title { font-weight: 600; font-size: 1.05rem; text-decoration: none; color: var(--text); }
+.app-status { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
+.app-status select, .app-track-label select { padding: 0.3rem 0.5rem; border-radius: 6px; border: 1px solid var(--border); font-size: 0.85rem; }
+.status-badge { font-size: 0.75rem; }
+.status-applied { background: #fff8e1; color: #ffa000; }
+.status-interview { background: #f3e5f5; color: #9c27b0; }
+.status-offer { background: #e8f5e9; color: #4caf50; }
+.status-rejected { background: #ffebee; color: #f44336; }
+
+/* ===== Resume Match ===== */
+.match-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
+.match-card { display: flex; gap: 1rem; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; text-decoration: none; color: var(--text); }
+.match-card:hover { border-color: var(--primary); text-decoration: none; }
+.match-score-ring { width: 56px; height: 56px; border-radius: 50%; background: conic-gradient(var(--primary) calc(var(--p)*1%), var(--bg) 0); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; position: relative; }
+.match-score-ring::before { content: ''; position: absolute; width: 44px; height: 44px; border-radius: 50%; background: var(--surface); }
+.match-score-ring { position: relative; z-index: 0; }
+.match-score-ring span, .match-score-ring { position: relative; z-index: 1; }
+.match-info { flex: 1; }
+.match-kw { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.3rem; }
+.kw-tag { background: #e8f5e9; color: #1a7f37; font-size: 0.75rem; padding: 0.1rem 0.4rem; border-radius: 999px; }
+textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.95rem; font-family: inherit; resize: vertical; }
+
+/* ===== Action bar ===== */
+.action-bar { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin: 1rem 0; }
+.app-track-label { font-size: 0.9rem; display: flex; align-items: center; gap: 0.3rem; }
+.small { font-size: 0.78rem; }
+
+/* ===== Dark mode ===== */
+.dark { --bg: #1a1a2e; --surface: #16213e; --text: #e0e0e0; --muted: #8a8a9a; --border: #2a2a4a; --primary: #5b9bf5; --primary-dark: #4287d4; }
+.dark .badge-indeed { color: #5b9bf5; }
+.dark .job-salary, .dark .bar-fg.blue { color: #81c784; }
+.dark .salary-avg { color: #fff; }
+.dark .pipeline-stage.bookmarked { background: #1a237e; }
+.dark .pipeline-stage.applied { background: #3e2723; }
+.dark .pipeline-stage.interview { background: #4a148c; }
+.dark .pipeline-stage.offer { background: #1b5e20; }
+.dark .pipeline-stage.rejected { background: #b71c1c; }
+.dark .kw-tag { background: #1b5e20; color: #81c784; }
+.dark textarea, .dark .app-status select, .dark .app-track-label select { background: #0f1729; color: #e0e0e0; border-color: #2a2a4a; }
+.dark .bar-bg, .dark .match-score-ring::before { background: #0f1729; }

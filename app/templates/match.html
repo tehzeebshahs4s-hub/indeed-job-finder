@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Resume Match{% endblock %}
+{% block content %}
+<h1>Resume Job Matcher</h1>
+<p class="muted">Paste your resume text below. We'll match it against all Indeed jobs and show you the best fits with a match score.</p>
+
+<form method="post" action="/match">
+  <textarea name="resume" rows="10" placeholder="Paste your resume text here...">{{ resume }}</textarea>
+  <button type="submit" class="btn btn-primary" style="margin-top:0.5rem">Find Matching Jobs</button>
+</form>
+
+{% if results is not none %}
+<hr style="margin:1.5rem 0">
+{% if results %}
+<h3>Top {{ results|length }} Matches <span class="muted">({{ kw_count }} keywords extracted)</span></h3>
+<div class="match-list">
+  {% for r in results %}
+  {% set job = r.job %}
+  <a href="/jobs/{{ job.id }}" class="match-card">
+    <div class="match-score-ring" style="--p:{{ r.score }}">{{ r.score }}%</div>
+    <div class="match-info">
+      <div class="job-title">{{ job.title }}</div>
+      <div class="job-meta">{{ job.company or '' }} &middot; {{ job.location or '' }}</div>
+      {% if r.matched_keywords %}
+      <div class="match-kw">
+        {% for kw in r.matched_keywords %}<span class="kw-tag">{{ kw }}</span>{% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<p class="muted">No matches found. Try adding more technical skills to your resume text.</p>
+{% endif %}
+{% endif %}
+{% endblock %}

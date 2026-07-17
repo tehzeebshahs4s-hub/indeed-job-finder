@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}My Applications{% endblock %}
+{% block content %}
+<h1>My Applications</h1>
+{% if items %}
+<div class="app-list">
+  {% for item in items %}
+  {% set job = item.job %}
+  <div class="app-card {{ item.status }}">
+    <a href="/jobs/{{ job.id }}" class="app-title">{{ job.title }}</a>
+    <div class="job-meta">{{ job.company or '' }} &middot; {{ job.location or '' }}</div>
+    <div class="app-status">
+      <form method="post" action="/applications/{{ job.id }}" class="inline">
+        <select name="status" onchange="this.form.submit()">
+          {% for s in statuses %}
+          <option value="{{ s }}" {{ 'selected' if s == item.status else '' }}>{{ s|capitalize }}</option>
+          {% endfor %}
+        </select>
+      </form>
+      <span class="badge status-badge status-{{ item.status }}">{{ item.status|capitalize }}</span>
+    </div>
+    {% if item.notes %}<div class="muted">{{ item.notes }}</div>{% endif %}
+    <div class="muted small">Updated {{ item.updated }}</div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p class="muted">No applications yet. <a href="/">Search jobs</a> and track your progress!</p>
+{% endif %}
+{% endblock %}

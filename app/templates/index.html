@@ -1,13 +1,41 @@
 {% extends "base.html" %}
-{% block title %}Find Jobs{% endblock %}
+{% block title %}Find Jobs on Indeed{% endblock %}
 {% block content %}
 <section class="hero">
   <h1>Find your next job</h1>
-  <p class="muted">Search across Indeed (scraped) with Adzuna &amp; Jooble as automatic fallbacks.</p>
+  <p class="muted">Powered by Indeed. Search across 100+ scraped jobs with smart tools.</p>
   <form class="search-form" action="/search" method="get">
     <input type="text" name="q" placeholder="Job title, keyword, or company" autofocus>
-    <input type="text" name="l" placeholder="Location">
+    <input type="text" name="l" placeholder="Location (e.g. remote)">
     <button type="submit" class="btn btn-primary">Search</button>
   </form>
 </section>
+
+<div class="tools-grid" style="margin-top:2rem">
+  <a href="/dashboard" class="tool-card">
+    <span class="tool-icon">&#128202;</span>
+    <strong>Analytics Dashboard</strong>
+    <span class="muted">Stats, charts, salary insights</span>
+  </a>
+  <a href="/match" class="tool-card">
+    <span class="tool-icon">&#128221;</span>
+    <strong>Resume Matcher</strong>
+    <span class="muted">Paste resume, see match %</span>
+  </a>
+  <a href="/applications" class="tool-card">
+    <span class="tool-icon">&#128203;</span>
+    <strong>Application Tracker</strong>
+    <span class="muted">Track: applied, interview, offer</span>
+  </a>
+  <a href="/feed" class="tool-card">
+    <span class="tool-icon">&#128246;</span>
+    <strong>RSS Feed</strong>
+    <span class="muted">Subscribe to new jobs</span>
+  </a>
+  <a href="/export/csv" class="tool-card">
+    <span class="tool-icon">&#128229;</span>
+    <strong>CSV Export</strong>
+    <span class="muted">Download your tracked jobs</span>
+  </a>
+</div>
 {% endblock %}

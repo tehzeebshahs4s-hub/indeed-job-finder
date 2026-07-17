@@ -6,14 +6,25 @@
   <title>{% block title %}Job Finder{% endblock %}</title>
   <link rel="stylesheet" href="/static/css/main.css">
   <script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dark = localStorage.getItem('dark') === '1';
+      if (dark) document.documentElement.classList.add('dark');
+    });
+    function toggleDark() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('dark', document.documentElement.classList.contains('dark') ? '1' : '0');
+    }
+  </script>
 </head>
 <body>
   <nav class="navbar">
     <a class="brand" href="/">🧭 Job Finder</a>
     <div class="nav-right">
+      <a href="/dashboard" class="nav-link">Dashboard</a>
       {% if current_user %}
-        <a href="/favorites" class="nav-link">Saved jobs</a>
-        <a href="/saved-searches" class="nav-link">Searches</a>
+        <a href="/applications" class="nav-link">My Jobs</a>
+        <a href="/favorites" class="nav-link">Saved</a>
         <span class="user-email">{{ current_user.email }}</span>
         <form method="post" action="/auth/logout" class="inline">
           <button type="submit" class="btn btn-ghost">Log out</button>
@@ -22,6 +33,7 @@
         <a href="/login" class="btn btn-ghost">Log in</a>
         <a href="/register" class="btn btn-primary">Sign up</a>
       {% endif %}
+      <button onclick="toggleDark()" class="btn btn-ghost dark-toggle" title="Toggle dark mode">🌙</button>
     </div>
   </nav>
 
@@ -30,7 +42,7 @@
   </main>
 
   <footer class="footer">
-    <small>Educational project. Data from Indeed (scraped) + Adzuna/Jooble (API fallback).</small>
+    <small>Indeed jobs scraped daily + legal job APIs. <a href="/feed">RSS feed</a> · <a href="/dashboard">Analytics</a> · <a href="/match">Resume match</a></small>
   </footer>
 </body>
 </html>

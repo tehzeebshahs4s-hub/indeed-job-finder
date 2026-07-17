@@ -2,23 +2,33 @@
 {% block title %}{{ job.title }}{% endblock %}
 {% block content %}
 <article class="card job-detail">
-  <p><a href="/search?q={{ job.title }}">&larr; Back to results</a></p>
+  <p><a href="javascript:history.back()">&larr; Back to results</a></p>
   <div class="job-title">{{ job.title }} <span class="badge badge-{{ job.source }}">{{ job.source }}</span></div>
   <div class="job-meta">{{ job.company or 'Unknown company' }} &middot; {{ job.location or 'Location n/a' }}</div>
   {% if job.salary %}<div class="job-salary">{{ job.salary }}</div>{% endif %}
 
   {% if current_user %}
-    <form method="post" action="/favorites/{{ job.id }}" class="inline" style="margin: 1rem 0;">
-      {% if is_favorite %}
-        <button type="submit" class="btn btn-ghost">&#9733; Remove from saved</button>
-      {% else %}
-        <button type="submit" class="btn btn-primary">&#9734; Save job</button>
-      {% endif %}
-    </form>
-  {% endif %}
-
-  {% if job.url %}
-    <p><a class="btn btn-primary" href="{{ job.url }}" target="_blank" rel="noopener">View original posting on {{ job.source|capitalize }} &nearr;</a></p>
+    <div class="action-bar">
+      <form method="post" action="/favorites/{{ job.id }}" class="inline">
+        {% if is_favorite %}
+          <button type="submit" class="btn btn-ghost">&#9733; Remove from saved</button>
+        {% else %}
+          <button type="submit" class="btn btn-primary">&#9734; Save job</button>
+        {% endif %}
+      </form>
+      <form method="post" action="/applications/{{ job.id }}" class="inline">
+        <label class="app-track-label">Track as:
+          <select name="status" onchange="this.form.submit()">
+            <option value="bookmarked">📌 Bookmarked</option>
+            <option value="applied">✉️ Applied</option>
+            <option value="interview">🗣️ Interview</option>
+            <option value="offer">🎉 Offer</option>
+            <option value="rejected">❌ Rejected</option>
+          </select>
+        </label>
+      </form>
+      <a class="btn btn-primary" href="{{ job.url }}" target="_blank" rel="noopener">Apply on {{ job.source|capitalize }} &nearr;</a>
+    </div>
   {% endif %}
 
   {% if job.summary or job.description %}

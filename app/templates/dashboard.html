@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Job Search Dashboard</h1>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-num">{{ stats.total_jobs }}</div>
+    <div class="stat-label">Total Jobs</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">{{ new_count }}</div>
+    <div class="stat-label">New (24h)</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">{{ stats.salary_count }}</div>
+    <div class="stat-label">With Salary</div>
+  </div>
+  {% if app_summary %}
+  <div class="stat-card">
+    <div class="stat-num">{{ app_summary.total }}</div>
+    <div class="stat-label">Tracked</div>
+  </div>
+  {% endif %}
+</div>
+
+{% if salary_insight %}
+<div class="card" style="margin-top:1.5rem">
+  <h3>Salary Insights</h3>
+  <div class="salary-bar">
+    <span class="salary-range">${{ "{:,}".format(salary_insight.min) }}</span>
+    <div class="salary-bar-fill" style="width:100%">
+      <span class="salary-avg">Avg: ${{ "{:,}".format(salary_insight.avg) }}</span>
+    </div>
+    <span class="salary-range">${{ "{:,}".format(salary_insight.max) }}</span>
+  </div>
+  <p class="muted" style="margin-top:0.5rem">Based on {{ salary_insight.count }} jobs with salary data (annualized)</p>
+</div>
+{% endif %}
+
+<div class="two-col" style="margin-top:1.5rem">
+  <div class="card">
+    <h3>Top Companies</h3>
+    {% for c in stats.top_companies[:7] %}
+    <div class="bar-row">
+      <span class="bar-label">{{ c.name }}</span>
+      <div class="bar-bg"><div class="bar-fg" style="width:{{ (c.count / stats.top_companies[0].count * 100)|round }}%"></div></div>
+      <span class="bar-num">{{ c.count }}</span>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="card">
+    <h3>Top Locations</h3>
+    {% for loc in stats.top_locations[:7] %}
+    <div class="bar-row">
+      <span class="bar-label">{{ loc.name[:25] }}</span>
+      <div class="bar-bg"><div class="bar-fg blue" style="width:{{ (loc.count / stats.top_locations[0].count * 100)|round }}%"></div></div>
+      <span class="bar-num">{{ loc.count }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% if app_summary %}
+<div class="card" style="margin-top:1.5rem">
+  <h3>Your Application Pipeline</h3>
+  <div class="pipeline">
+    {% for s in ["bookmarked","applied","interview","offer","rejected"] %}
+    <div class="pipeline-stage {{ s }}">
+      <div class="pipeline-num">{{ app_summary.get(s, 0) }}</div>
+      <div class="pipeline-label">{{ s|capitalize }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  <p style="margin-top:1rem"><a href="/applications">View all applications &rarr;</a></p>
+</div>
+{% else %}
+<div class="card" style="margin-top:1.5rem">
+  <h3>Your Application Pipeline</h3>
+  <p class="muted"><a href="/login">Log in</a> to track your job applications.</p>
+</div>
+{% endif %}
+
+<div class="tools-grid" style="margin-top:1.5rem">
+  <a href="/match" class="tool-card">
+    <span class="tool-icon">&#128221;</span>
+    <strong>Resume Match</strong>
+    <span class="muted">Paste your resume, see job match %</span>
+  </a>
+  <a href="/export/csv" class="tool-card">
+    <span class="tool-icon">&#128229;</span>
+    <strong>Export CSV</strong>
+    <span class="muted">Download your tracked jobs</span>
+  </a>
+  <a href="/feed" class="tool-card">
+    <span class="tool-icon">&#128246;</span>
+    <strong>RSS Feed</strong>
+    <span class="muted">Subscribe to new jobs</span>
+  </a>
+</div>
+{% endblock %}
