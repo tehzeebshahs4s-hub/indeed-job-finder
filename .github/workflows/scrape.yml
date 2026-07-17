@@ -67,18 +67,6 @@ jobs:
           echo "dist files:" && ls -la dist/
           echo "job count:" && python -c "import json;print(len(json.load(open('dist/jobs.json'))['jobs']))"
 
-      - name: Commit dist/ to repo
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add dist/
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "chore: refresh job board ($(date -u +%F_%H:%M))"
-            git push
-          fi
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
