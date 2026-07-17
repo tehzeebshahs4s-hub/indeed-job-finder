@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Find Jobs{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Find your next job</h1>
+  <p class="muted">Search across Indeed (scraped) with Adzuna &amp; Jooble as automatic fallbacks.</p>
+  <form class="search-form" action="/search" method="get">
+    <input type="text" name="q" placeholder="Job title, keyword, or company" autofocus>
+    <input type="text" name="l" placeholder="Location">
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+</section>
+{% endblock %}

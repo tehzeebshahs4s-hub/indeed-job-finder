@@ -1,0 +1,59 @@
+<!--
+  Indeed search results fixture (representative structure for offline parser tests).
+  Real Indeed markup changes often; parser uses multiple selector fallbacks.
+-->
+<html>
+<head><title>jobs - indeed</title></head>
+<body>
+<div id="mosaic-provider-jobresults">
+  <ul class="jobsearch-ResultsList">
+    <li>
+      <div class="slider_item css-kyg8or eu4oa1w0 job_seen_beacon" data-jk="aa111" tabindex="-1">
+        <table role="presentation">
+          <tr><td>
+            <h2 class="jobTitle">
+              <a class="jcs-JobTitle css-..." data-jk="aa111"
+                 href="/rc/clk?jk=aa111&amp;from=...">Senior Python Developer</a>
+            </h2>
+            <div class="salary-snippet">
+              <span class="attribute_snippet_wrapper"><span>$130,000 - $160,000 a year</span></span>
+            </div>
+            <span class="companyName">Acme Corp</span>
+            <span class="companyLocation">New York, NY 10001<span>(Hybrid)</span></span>
+            <div class="job-snippet">
+              <p>We are looking for a Senior Python Developer to build backend services...</p>
+            </div>
+          </td></tr>
+        </table>
+        <div class="result-link-bar-container"><span class="date">Posted 3 days ago</span></div>
+      </div>
+    </li>
+
+    <li>
+      <div class="slider_item css-kyg8or eu4oa1w0 job_seen_beacon" data-jk="bb222" tabindex="-1">
+        <table role="presentation">
+          <tr><td>
+            <h2 class="jobTitle">
+              <a class="jcs-JobTitle css-..." data-jk="bb222"
+                 href="/rc/clk?jk=bb222">Data Engineer</a>
+            </h2>
+            <span class="companyName"><a href="/cmp/Globex">Globex</a></span>
+            <span class="companyLocation">Remote</span>
+            <div class="job-snippet"><p>Build ETL pipelines with Spark and Airflow.</p></div>
+          </td></tr>
+        </table>
+        <div class="result-link-bar-container"><span class="date">PostedJust now</span></div>
+      </div>
+    </li>
+
+    <li>
+      <!-- card missing a title link (should be skipped gracefully) -->
+      <div class="slider_item css-kyg8or eu4oa1w0 job_seen_beacon" data-jk="cc333">
+        <h2 class="jobTitle">New</h2>
+        <span class="companyName">Incomplete Inc.</span>
+      </div>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

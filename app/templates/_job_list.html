@@ -1,0 +1,44 @@
+<div id="results">
+  {% if error %}
+    <div class="alert alert-error">
+      <strong>No results right now.</strong> {{ error }}
+      <p class="muted">Indeed may be blocking requests. Set fallback API keys (Adzuna/Jooble) in <code>.env</code> for reliable results.</p>
+    </div>
+  {% elif items %}
+    <div class="results-meta">
+      <span>{{ total }} job{{ '' if total == 1 else 's' }}</span>
+      {% if source %}<span class="badge badge-{{ source }}">via {{ source }}</span>{% endif %}
+    </div>
+
+    <div class="job-list">
+      {% for item in items %}
+        {% set job = item.job %}
+        <a class="job-card" href="/jobs/{{ job.id }}">
+          <div class="job-title">{{ job.title }} <span class="badge badge-{{ job.source }}">{{ job.source }}</span></div>
+          <div class="job-meta">{{ job.company or 'Unknown company' }} &middot; {{ job.location or 'Location n/a' }}</div>
+          {% if job.salary %}<div class="job-salary">{{ job.salary }}</div>{% endif %}
+          {% if job.summary %}<div class="job-meta">{{ job.summary[:200] }}{% if job.summary|length > 200 %}&hellip;{% endif %}</div>{% endif %}
+          {% if item.is_favorite %}<div class="job-meta">★ Saved</div>{% endif %}
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="pagination">
+      {% if page > 0 %}
+        <a class="btn btn-ghost"
+           href="/search?q={{ q }}&l={{ l }}&page={{ page - 1 }}"
+           hx-get="/search?q={{ q }}&l={{ l }}&page={{ page - 1 }}"
+           hx-target="#results">&larr; Previous</a>
+      {% endif %}
+      <span class="muted">Page {{ page + 1 }}</span>
+      {% if items|length >= per_page %}
+        <a class="btn btn-ghost"
+           href="/search?q={{ q }}&l={{ l }}&page={{ page + 1 }}"
+           hx-get="/search?q={{ q }}&l={{ l }}&page={{ page + 1 }}"
+           hx-target="#results">Next &rarr;</a>
+      {% endif %}
+    </div>
+  {% else %}
+    <p class="muted">No jobs found. Try a different keyword or location.</p>
+  {% endif %}
+</div>

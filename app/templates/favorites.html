@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Saved jobs{% endblock %}
+{% block content %}
+<h1>Saved jobs</h1>
+{% if items %}
+  <div class="job-list">
+    {% for item in items %}
+      {% set job = item.job %}
+      <a class="job-card" href="/jobs/{{ job.id }}">
+        <div class="job-title">{{ job.title }} <span class="badge badge-{{ job.source }}">{{ job.source }}</span></div>
+        <div class="job-meta">{{ job.company or 'Unknown' }} &middot; {{ job.location or 'n/a' }}</div>
+        {% if job.salary %}<div class="job-salary">{{ job.salary }}</div>{% endif %}
+      </a>
+      <form method="post" action="/saved-searches" class="inline"></form>
+      <form method="post" action="/favorites/{{ job.id }}" class="inline" style="margin-top:-0.4rem;margin-bottom:0.75rem;">
+        <button type="submit" class="btn btn-ghost">&#9733; Remove</button>
+      </form>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="muted">You haven't saved any jobs yet. <a href="/">Find jobs</a> and click "Save job".</p>
+{% endif %}
+{% endblock %}

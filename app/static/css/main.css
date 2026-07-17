@@ -1,0 +1,110 @@
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --muted: #6b7280;
+  --primary: #2557d6;
+  --primary-dark: #1c44a8;
+  --border: #e2e5ea;
+  --error: #c0392b;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.navbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.5rem; height: 60px;
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 10;
+}
+.brand { font-weight: 700; font-size: 1.2rem; }
+.nav-right { display: flex; align-items: center; gap: 0.75rem; }
+.user-email { color: var(--muted); font-size: 0.9rem; }
+
+.container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+.btn {
+  display: inline-block; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text);
+  padding: 0.5rem 1rem; border-radius: var(--radius);
+  font-size: 0.95rem; cursor: pointer; font-family: inherit;
+}
+.btn:hover { text-decoration: none; }
+.btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-ghost { background: transparent; }
+
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.2rem; margin: 0 0 0.5rem; }
+
+.search-form {
+  display: flex; gap: 0.5rem; margin-top: 1.5rem; flex-wrap: wrap;
+}
+.search-bar { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+.nav-link { color: var(--muted); font-size: 0.9rem; }
+.nav-link:hover { color: var(--primary); }
+.saved-search-list { list-style: none; padding: 0; }
+.saved-search-list li {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.75rem 1rem; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 0.5rem;
+}
+.search-form input {
+  flex: 1 1 200px; padding: 0.7rem 0.9rem; font-size: 1rem;
+  border: 1px solid var(--border); border-radius: var(--radius);
+}
+
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.5rem;
+}
+.auth-card { max-width: 420px; margin: 2rem auto; }
+.auth-card h1 { margin-top: 0; }
+.auth-card form { display: flex; flex-direction: column; gap: 0.85rem; }
+.auth-card label { display: flex; flex-direction: column; font-size: 0.9rem; gap: 0.3rem; }
+.auth-card input { padding: 0.65rem; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; }
+
+.muted { color: var(--muted); }
+.inline { display: inline; }
+
+.alert { padding: 0.7rem 0.9rem; border-radius: 8px; margin-bottom: 1rem; }
+.alert-error { background: #fdecea; color: var(--error); border: 1px solid #f5c6c0; }
+
+.footer { text-align: center; color: var(--muted); padding: 2rem; }
+
+/* Job list (phase 6) */
+.job-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.job-card {
+  display: block; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem 1.25rem;
+}
+.job-card:hover { border-color: var(--primary); text-decoration: none; }
+.results-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; color: var(--muted); }
+.pagination { display: flex; align-items: center; gap: 1rem; justify-content: center; margin-top: 1.5rem; }
+.results-section { margin-top: 1.5rem; }
+.job-detail { line-height: 1.7; }
+.job-detail h3 { margin-bottom: 0.5rem; }
+.search-form { margin-bottom: 0; }
+.job-title { font-weight: 600; font-size: 1.05rem; }
+.job-meta { color: var(--muted); font-size: 0.9rem; margin: 0.2rem 0; }
+.job-salary { color: #1a7f37; font-size: 0.9rem; }
+.badge {
+  display: inline-block; font-size: 0.72rem; text-transform: uppercase;
+  letter-spacing: 0.04em; background: var(--bg); border: 1px solid var(--border);
+  padding: 0.15rem 0.45rem; border-radius: 999px; color: var(--muted);
+}
+.badge-indeed { color: #2557d6; }
+.badge-adzuna { color: #9c27b0; }
+.badge-jooble { color: #1a7f37; }

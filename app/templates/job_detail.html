@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}{{ job.title }}{% endblock %}
+{% block content %}
+<article class="card job-detail">
+  <p><a href="/search?q={{ job.title }}">&larr; Back to results</a></p>
+  <div class="job-title">{{ job.title }} <span class="badge badge-{{ job.source }}">{{ job.source }}</span></div>
+  <div class="job-meta">{{ job.company or 'Unknown company' }} &middot; {{ job.location or 'Location n/a' }}</div>
+  {% if job.salary %}<div class="job-salary">{{ job.salary }}</div>{% endif %}
+
+  {% if current_user %}
+    <form method="post" action="/favorites/{{ job.id }}" class="inline" style="margin: 1rem 0;">
+      {% if is_favorite %}
+        <button type="submit" class="btn btn-ghost">&#9733; Remove from saved</button>
+      {% else %}
+        <button type="submit" class="btn btn-primary">&#9734; Save job</button>
+      {% endif %}
+    </form>
+  {% endif %}
+
+  {% if job.url %}
+    <p><a class="btn btn-primary" href="{{ job.url }}" target="_blank" rel="noopener">View original posting on {{ job.source|capitalize }} &nearr;</a></p>
+  {% endif %}
+
+  {% if job.summary or job.description %}
+    <h3>Description</h3>
+    <p>{{ job.description or job.summary }}</p>
+  {% endif %}
+
+  <p class="muted">
+    First seen {{ job.first_seen_at }} &middot;
+    {% if job.posted_at %}Posted {{ job.posted_at }}{% endif %}
+  </p>
+</article>
+{% endblock %}

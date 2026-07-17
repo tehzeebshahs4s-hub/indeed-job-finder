@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Job Finder{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/main.css">
+  <script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
+</head>
+<body>
+  <nav class="navbar">
+    <a class="brand" href="/">🧭 Job Finder</a>
+    <div class="nav-right">
+      {% if current_user %}
+        <a href="/favorites" class="nav-link">Saved jobs</a>
+        <a href="/saved-searches" class="nav-link">Searches</a>
+        <span class="user-email">{{ current_user.email }}</span>
+        <form method="post" action="/auth/logout" class="inline">
+          <button type="submit" class="btn btn-ghost">Log out</button>
+        </form>
+      {% else %}
+        <a href="/login" class="btn btn-ghost">Log in</a>
+        <a href="/register" class="btn btn-primary">Sign up</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <small>Educational project. Data from Indeed (scraped) + Adzuna/Jooble (API fallback).</small>
+  </footer>
+</body>
+</html>

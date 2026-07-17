@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Saved searches{% endblock %}
+{% block content %}
+<h1>Saved searches</h1>
+{% if searches %}
+  <ul class="saved-search-list">
+    {% for s in searches %}
+      <li>
+        <a href="/search?q={{ s.keyword }}&l={{ s.location }}">
+          <strong>{{ s.keyword or 'any keyword' }}</strong>
+          {% if s.location %}<span class="muted">in {{ s.location }}</span>{% endif %}
+        </a>
+        <form method="post" action="/saved-searches/{{ s.id }}/delete" class="inline">
+          <button type="submit" class="btn btn-ghost">Remove</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p class="muted">No saved searches yet. Run a search and click "Save this search".</p>
+{% endif %}
+{% endblock %}

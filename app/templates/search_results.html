@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Results for {{ q }}{% endblock %}
+{% block content %}
+<div class="search-bar">
+  <form class="search-form" action="/search" method="get">
+    <input type="text" name="q" value="{{ q }}" placeholder="Job title, keyword, or company">
+    <input type="text" name="l" value="{{ l }}" placeholder="Location">
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+  {% if current_user and (q or l) %}
+    <form method="post" action="/saved-searches" class="inline">
+      <input type="hidden" name="q" value="{{ q }}">
+      <input type="hidden" name="l" value="{{ l }}">
+      <button type="submit" class="btn btn-ghost">+ Save this search</button>
+    </form>
+  {% endif %}
+</div>
+
+<section class="results-section">
+  {% include "_job_list.html" %}
+</section>
+{% endblock %}
