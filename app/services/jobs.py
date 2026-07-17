@@ -9,6 +9,26 @@ from app.models import Favorite, Job
 from app.scraper.base import RawJob
 
 
+def search_jobs_db(
+    db: Session, keyword: str, location: str, page: int, per_page: int = 10
+) -> tuple[list[Job], int]:
+    """Search pre-scraped jobs in the DB (instant, no live scraping)."""
+    q = db.query(Job)
+    kw = keyword.strip().lower()
+    loc = location.strip().lower()
+    if kw:
+        q = q.filter(
+            (Job.title.ilike(f"%{kw}%"))
+            | (Job.company.ilike(f"%{kw}%"))
+            | (Job.summary.ilike(f"%{kw}%"))
+        )
+    if loc:
+        q = q.filter(Job.location.ilike(f"%{loc}%"))
+    total = q.count()
+    jobs = q.order_by(Job.first_seen_at.desc()).offset(page * per_page).limit(per_page).all()
+    return jobs, total
+
+
 def upsert_jobs(db: Session, raw_jobs: list[RawJob]) -> list[Job]:
     """Insert or update Job rows for the given raw jobs; return ORM objects in order."""
     now = datetime.now(timezone.utc)

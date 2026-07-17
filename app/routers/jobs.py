@@ -11,7 +11,7 @@ from app.deps import get_optional_user
 from app.models import User
 from app.ratelimit import limiter
 from app.schemas import JobOut
-from app.services.jobs import favorite_ids_for_user, get_job, upsert_jobs
+from app.services.jobs import favorite_ids_for_user, get_job, search_jobs_db, upsert_jobs
 from app.scraper import router as source_router
 from app.scraper.router import NoSourceAvailable
 from app.templating import templates
@@ -43,14 +43,21 @@ def search(
     total = 0
 
     if q or l:
-        try:
-            result = source_router.fetch_jobs(db, q, l, page)
-            jobs = upsert_jobs(db, result.jobs)
-            source_used = result.source
-            total = result.total
-        except NoSourceAvailable as exc:
-            error = str(exc)
-            logger.warning("search failed: %s", exc)
+        # DB-first: serve pre-scraped jobs instantly (no 60s Playwright wait)
+        db_jobs, total = search_jobs_db(db, q, l, page, PER_PAGE)
+        if db_jobs:
+            jobs = db_jobs
+            source_used = jobs[0].source if jobs else None
+        elif not request.headers.get("HX-Request"):
+            # DB empty + full page load: try a live scrape once (background-ish)
+            try:
+                result = source_router.fetch_jobs(db, q, l, page)
+                jobs = upsert_jobs(db, result.jobs)
+                source_used = result.source
+                total = result.total
+            except NoSourceAvailable as exc:
+                error = str(exc)
+                logger.warning("search failed: %s", exc)
 
     fav_ids = favorite_ids_for_user(db, current_user.id) if current_user else set()
     items = [{"job": j, "is_favorite": j.id in fav_ids} for j in jobs]

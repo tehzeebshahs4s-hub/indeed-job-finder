@@ -88,11 +88,12 @@ def _render(url: str) -> str:
                 pass
 
             page = context.new_page()
-            resp = page.goto(url, wait_until="domcontentloaded", timeout=settings.scraper_timeout_seconds * 1000)
+            resp = page.goto(url, wait_until="commit", timeout=settings.scraper_timeout_seconds * 1000)
             if resp is not None and resp.status in (403, 429):
                 raise BlockedError(f"Indeed returned HTTP {resp.status}")
+            # Give Cloudflare/JS time to resolve, but don't block too long
             try:
-                page.wait_for_selector(RESULT_SELECTOR, timeout=settings.scraper_timeout_seconds * 1000)
+                page.wait_for_selector(RESULT_SELECTOR, timeout=20000)
             except PWTimeout:
                 pass
 
