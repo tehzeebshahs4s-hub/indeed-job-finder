@@ -66,7 +66,12 @@ def _render(url: str) -> str:
         with sync_playwright() as p:
             browser = p.chromium.launch(
                 headless=settings.scraper_headless,
-                args=["--disable-blink-features=AutomationControlled"],
+                args=[
+                    "--disable-blink-features=AutomationControlled",
+                    "--no-sandbox",
+                    "--disable-dev-shm-usage",
+                    "--disable-gpu",
+                ],
             )
             context = browser.new_context(
                 viewport={"width": 1366, "height": 900},
