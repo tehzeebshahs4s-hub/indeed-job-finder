@@ -42,6 +42,9 @@ _deploy.py
 _plesk.py
 _p*.py
 _smoke_*.py
+_sshprobe.py
+_render*.py
+_render_state.json
 captcha_usage.json
 server.log
 server.err

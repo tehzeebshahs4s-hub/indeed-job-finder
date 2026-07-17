@@ -9,13 +9,16 @@ from app.scraper.base import FetchResult, JobFetcher
 from app.scraper.cache import get_cached, store
 from app.scraper.exceptions import BlockedError, FetchError, NotConfigured, ScraperError
 from app.scraper.jooble import JoobleFetcher
+from app.scraper.remotive import ArbeitnowFetcher
 
 logger = logging.getLogger(__name__)
 
 # Priority order. Indeed is prepended once implemented (Phase 4/5).
+# Arbeitnow is free + keyless, so it stays last as a guaranteed fallback.
 DEFAULT_SOURCES: list[JobFetcher] = [
     AdzunaFetcher(),
     JoobleFetcher(),
+    ArbeitnowFetcher(),
 ]
 
 
