@@ -1,84 +1,45 @@
-name: Scrape & Publish
+name: Publish indeed jobs
+
+# The actual Indeed scraping runs LOCALLY (residential IP) and commits dist/.
+# GitHub Actions runners are on datacenter IPs that Indeed/Cloudflare blocks,
+# so this workflow only PUBLISHES the already-committed dist/ to GitHub Pages.
+# To refresh jobs: run `python generate_static.py` locally, commit dist/, push.
 
 on:
-  schedule:
-    - cron: "0 6,12,18 * * *"   # 3x daily at 06:00/12:00/18:00 UTC
-  workflow_dispatch:             # manual trigger from the Actions tab
   push:
     branches: [main]
     paths:
-      - generate_static.py
-      - app/scraper/**
-      - app/schemas/**
-      - requirements.txt
+      - "dist/**"
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 concurrency:
-  group: scrape-publish
+  group: publish-pages
   cancel-in-progress: false
 
 jobs:
-  scrape:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Cache pip
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-
-      - name: Install Python deps
-        run: pip install -r requirements.txt
-
-      - name: Install Playwright Chromium
-        run: python -m playwright install chromium --with-deps
-
-      - name: Configure scraper
-        env:
-          SCRAPER_HEADLESS: "true"
-          INDEED_ENABLED: "true"
-          SCRAPER_MIN_DELAY: "2"
-          SCRAPER_MAX_DELAY: "5"
-          SCRAPER_CACHE_TTL_SECONDS: "0"
-        run: echo "configured"
-
-      - name: Generate static site (scrape Indeed + fetch legal APIs)
-        env:
-          SCRAPER_HEADLESS: "true"
-          INDEED_ENABLED: "true"
-          SCRAPER_MIN_DELAY: "2"
-          SCRAPER_MAX_DELAY: "5"
-          SCRAPER_CACHE_TTL_SECONDS: "0"
-          JWT_SECRET: dummy
-        run: python generate_static.py
-
-      - name: Show output stats
-        run: |
-          echo "dist files:" && ls -la dist/
-          echo "job count:" && python -c "import json;print(len(json.load(open('dist/jobs.json'))['jobs']))"
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
   deploy-pages:
-    needs: scrape
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v4
+      - name: Sanity check dist/
+        run: |
+          test -f dist/index.html || { echo "dist/index.html missing"; exit 1; }
+          test -f dist/jobs.json || { echo "dist/jobs.json missing"; exit 1; }
+          echo "jobs:" && python3 -c "import json;print(len(json.load(open('dist/jobs.json'))['jobs']))"
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

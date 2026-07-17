@@ -13,15 +13,20 @@ from pathlib import Path
 
 from app.database import SessionLocal, init_db
 from app.scraper import router as source_router
+from app.scraper.indeed import IndeedFetcher
 from app.scraper.router import NoSourceAvailable
 
-# A few popular searches to seed the static board. More -> richer page.
+# Indeed-only. Run this from a residential IP (your machine) — Indeed blocks
+# datacenter IPs (GitHub Actions runners), so scraping must happen locally.
 SEED_SEARCHES = [
     ("python developer", "remote"),
     ("frontend developer", "remote"),
     ("data analyst", "remote"),
-    ("", "remote"),
-    ("backend", ""),
+    ("software engineer", "remote"),
+    ("backend developer", "remote"),
+    ("full stack developer", "remote"),
+    ("devops engineer", "remote"),
+    ("react developer", "remote"),
 ]
 
 
@@ -30,11 +35,14 @@ def collect_jobs() -> tuple[list[dict], str]:
     db = SessionLocal()
     seen: set[str] = set()
     all_jobs: list[dict] = []
-    source_used = "unknown"
+    source_used = "indeed"
+    indeed_only = [IndeedFetcher()]
     try:
         for keyword, location in SEED_SEARCHES:
             try:
-                result = source_router.fetch_jobs(db, keyword, location, 0)
+                result = source_router.fetch_jobs(
+                    db, keyword, location, 0, use_cache=False, sources=indeed_only
+                )
             except NoSourceAvailable:
                 continue
             source_used = result.source
@@ -44,7 +52,7 @@ def collect_jobs() -> tuple[list[dict], str]:
                     continue
                 seen.add(uid)
                 all_jobs.append(_serialize(j))
-            if len(all_jobs) >= 60:
+            if len(all_jobs) >= 120:
                 break
     finally:
         db.close()
